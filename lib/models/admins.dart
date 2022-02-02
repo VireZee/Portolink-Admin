@@ -17,4 +17,4 @@ class Admins {
     email,
     password
   ];
-}
+} 
