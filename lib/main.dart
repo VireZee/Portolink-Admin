@@ -23,10 +23,10 @@ class MyApp extends StatelessWidget {
           theme: theme,
           initialRoute: '/',
           routes: {
-            '/': (context) => const Splash(),
-            '/in' : (context) => const SignIn(),
-            '/up': (context) => const SignUp(),
-            '/main': (context) => const MainMenu()
+            // '/': (context) => const Splash(),
+            // '/in' : (context) => const SignIn(),
+            // '/up': (context) => const SignUp(),
+            // '/main': (context) => const MainMenu()
           }
         );
       }
