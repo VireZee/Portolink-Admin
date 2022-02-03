@@ -14,5 +14,14 @@ class Auth {
   }
   static Future<String> signUp(Admins admins) async {
     await Firebase.initializeApp();
+    final String dateNow = Activity.dateNow();
+    String msg = '';
+    final String token;
+    final String aid;
+    try {
+
+    } on FirebaseAuthException catch (e) {
+      
+    }
   }
 }
