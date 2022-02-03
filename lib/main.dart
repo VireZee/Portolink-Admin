@@ -1,3 +1,4 @@
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -14,10 +15,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final dark = WidgetsBinding.instance!.window.platformBrightness == Brightness.dark;
     final initTheme = dark ? BlackWhite.darkTheme() : BlackWhite.lightTheme();
-    return const Scaffold(
-      body: Center(
-        child: Text('Hello')
-      )
+    return ThemeProvider(
+      initTheme: initTheme,
+      builder: (context, theme) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: theme,
+          initialRoute: '/',
+          routes: {
+            '/': (context) => const Splash(),
+            '/in' : (context) => const SignIn(),
+            '/up': (context) => const SignUp(),
+            '/main': (context) => const MainMenu()
+          }
+        );
+      }
     );
   }
 }
