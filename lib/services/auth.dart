@@ -108,9 +108,8 @@ class Auth {
         'Email': admins.email.replaceAll(' ', '').toLowerCase(),
         'Updated': dateNow
       }).then((value) => msg = 'Granted');
-      auth.currentUser!.updateDisplayName(convertToTitleCase(admins.name));
-      auth.currentUser!.updateEmail(admins.email.replaceAll(' ', '').toLowerCase());
-      EmailAuthProvider.credential(email: admins.email, password: admins.password);
+      await auth.currentUser!.updateDisplayName(convertToTitleCase(admins.name));
+      await auth.currentUser!.updateEmail(admins.email.replaceAll(' ', '').toLowerCase());
       return msg;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
@@ -119,8 +118,8 @@ class Auth {
       else if (e.code == 'invalid-email') {
         msg = 'Invalid Email';
       }
-      else if (e.code == 'operation-not-allowed') {
-        msg = 'Disabled';
+      else if (e.code == 'requires-recent-login') {
+        msg = 'Relog';
       }
     }
     return msg;
