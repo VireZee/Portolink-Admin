@@ -23,11 +23,10 @@ class Auth {
       aid = aCredential.user!.uid;
       token = (await FirebaseMessaging.instance.getToken())!;
       await aCollection.doc(aid).set({
-        'UID': aid,
+        'AID': aid,
         'Photo': '-',
         'Name': convertToTitleCase(admins.name),
         'Email': admins.email.replaceAll(' ', '').toLowerCase(),
-        'Password': sha512.convert(utf8.encode(sha512.convert(utf8.encode(admins.password)).toString())).toString(),
         'Token': token,
         'Created': dateNow,
         'Updated': '-',
