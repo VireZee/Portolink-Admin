@@ -27,6 +27,7 @@ class Auth {
         'Photo': '-',
         'Name': convertToTitleCase(admins.name),
         'Email': admins.email.replaceAll(' ', '').toLowerCase(),
+        'Password': sha512.convert(utf8.encode(sha512.convert(utf8.encode(admins.password)).toString())).toString(),
         'Token': token,
         'Created': dateNow,
         'Updated': '-',
