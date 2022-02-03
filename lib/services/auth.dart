@@ -38,7 +38,19 @@ class Auth {
       auth.currentUser!.updateDisplayName(convertToTitleCase(admins.name));
       return msg;
     } on FirebaseAuthException catch (e) {
-      
+      if (e.code == 'email-already-in-use') {
+        msg = 'Existed';
+      }
+      else if (e.code == 'invalid-email') {
+        msg = 'Invalid Email';
+      }
+      else if (e.code == 'weak-password') {
+        msg = 'Invalid Pass';
+      }
+      else if (e.code == 'operation-not-allowed') {
+        msg = 'Disabled';
+      }
     }
+    return msg;
   }
 }
