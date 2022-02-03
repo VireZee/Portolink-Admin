@@ -53,4 +53,95 @@ class Auth {
     }
     return msg;
   }
+  static Future<String> signIn(String email, String password) async {
+    await Firebase.initializeApp();
+    final String dateNow = Activity.dateNow();
+    String msg = '';
+    final String token;
+    final String aid;
+    try {
+      UserCredential uCredential = await auth.signInWithEmailAndPassword(email: email, password: password);
+      aid = uCredential.user!.uid;
+      token = (await FirebaseMessaging.instance.getToken())!;
+      await aCollection.doc(aid).update({
+        'Is On': true,
+        'Token': token,
+        'Entered': dateNow
+      }).then((value) => msg = 'Granted');
+      return msg;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        msg = 'None';
+      }
+      else if (e.code == 'wrong-password') {
+        msg = 'Hacker';
+      }
+      else if (e.code == 'invalid-email') {
+        msg = 'Invalid Email';
+      }
+      else if (e.code == 'user-disabled') {
+        msg = 'Disabled';
+      }
+    }
+    return msg;
+  }
+  static Future<dynamic> getUser() async {
+    return await aCollection.doc(auth.currentUser!.uid).get().then((DocumentSnapshot doc) async {
+      final Admins admins = Admins(
+        doc['Photo'],
+        doc['Name'],
+        doc['Email'],
+        doc['Password']
+      );
+      return admins;
+    });
+  }
+  static Future<String> updateAccount(Admins admins) async {
+    await Firebase.initializeApp();
+    final String dateNow = Activity.dateNow();
+    String msg = '';
+    final String aid = auth.currentUser!.uid;
+    try {
+      await aCollection.doc(aid).update({
+        'Name': convertToTitleCase(admins.name),
+        'Email': admins.email.replaceAll(' ', '').toLowerCase(),
+        'Updated': dateNow
+      }).then((value) => msg = 'Granted');
+      auth.currentUser!.updateDisplayName(convertToTitleCase(admins.name));
+      auth.currentUser!.updateEmail(admins.email.replaceAll(' ', '').toLowerCase());
+      EmailAuthProvider.credential(email: admins.email, password: admins.password);
+      return msg;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'email-already-in-use') {
+        msg = 'Existed';
+      }
+      else if (e.code == 'invalid-email') {
+        msg = 'Invalid Email';
+      }
+      else if (e.code == 'operation-not-allowed') {
+        msg = 'Disabled';
+      }
+    }
+    return msg;
+  }
+  static Future<bool> signOut() async {
+    await Firebase.initializeApp();
+    final String dateNow = Activity.dateNow();
+    final String aid = auth.currentUser!.uid;
+    await auth.signOut().whenComplete(() {
+      aCollection.doc(aid).update({
+        'Is On': false,
+        'Token': '-',
+        'Left': dateNow
+      });
+    });
+    return true;
+  }
+  static Future<bool> deleteAccount() async {
+    await Firebase.initializeApp();
+    final String aid = auth.currentUser!.uid;
+    aCollection.doc(aid).delete();
+    auth.currentUser!.delete();
+    return true;
+  }
 }
