@@ -1,1 +1,1 @@
-part 'my_theme.dart';
+part 'theme.dart';
