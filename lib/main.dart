@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dark = WidgetsBinding.instance!.window.platformBrightness == Brightness.dark;
-    
+    final initTheme = dark ? BlackWhite.darkTheme() : BlackWhite.lightTheme();
     return const Scaffold(
       body: Center(
         child: Text('Hello')
