@@ -1,6 +1,6 @@
 part of 'shared.dart';
 
-class Theme {
+class BlackWhite {
   static ThemeData lightTheme() => ThemeData(
     colorScheme: const ColorScheme(
       brightness: Brightness.light,
