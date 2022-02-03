@@ -34,8 +34,8 @@ class Auth {
         'Entered': '-',
         'Left': '-'
       }).then((value) => msg = 'Signed');
-      auth.currentUser!.updatePhotoURL(admins.photo);
-      auth.currentUser!.updateDisplayName(convertToTitleCase(admins.name));
+      await auth.currentUser!.updatePhotoURL(admins.photo);
+      await auth.currentUser!.updateDisplayName(convertToTitleCase(admins.name));
       return msg;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
@@ -86,7 +86,8 @@ class Auth {
     return msg;
   }
   static Future<dynamic> getUser() async {
-    return await aCollection.doc(auth.currentUser!.uid).get().then((DocumentSnapshot doc) async {
+    final String aid = auth.currentUser!.uid;
+    return await aCollection.doc(aid).get().then((DocumentSnapshot doc) async {
       final Admins admins = Admins(
         doc['Photo'],
         doc['Name'],
