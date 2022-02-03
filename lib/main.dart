@@ -12,6 +12,8 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final dark = WidgetsBinding.instance!.window.platformBrightness == Brightness.dark;
+    
     return const Scaffold(
       body: Center(
         child: Text('Hello')
