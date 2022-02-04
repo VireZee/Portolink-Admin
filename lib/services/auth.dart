@@ -103,13 +103,13 @@ class Auth {
     String msg = '';
     final String aid = auth.currentUser!.uid;
     try {
+      await auth.currentUser!.updateDisplayName(convertToTitleCase(admins.name));
+      await auth.currentUser!.updateEmail(admins.email.replaceAll(' ', '').toLowerCase());
       await aCollection.doc(aid).update({
         'Name': convertToTitleCase(admins.name),
         'Email': admins.email.replaceAll(' ', '').toLowerCase(),
         'Updated': dateNow
       }).then((value) => msg = 'Granted');
-      await auth.currentUser!.updateDisplayName(convertToTitleCase(admins.name));
-      await auth.currentUser!.updateEmail(admins.email.replaceAll(' ', '').toLowerCase());
       return msg;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {

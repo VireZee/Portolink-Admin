@@ -1,6 +1,6 @@
 {
-    "name": "portolink_admin",
-    "short_name": "portolink_admin",
+    "name": "Portolink Aadmin",
+    "short_name": "Portolink Admin",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -1,7 +1,7 @@
 name: portolink_admin
 version: 2.0+2
 environment:
-  sdk: ">=2.15.1 <3.0.0"
+  sdk: ">=2.16.0 <3.0.0"
 dependencies:
   flutter:
     sdk: flutter
@@ -14,17 +14,17 @@ dependencies:
   firebase_core: ^1.12.0
   firebase_messaging: ^11.2.6
   firebase_storage: ^10.2.6
+  flutter_lints: ^1.0.4
   flutter_profile_picture: ^1.0.2
   fluttertoast: ^8.0.8
   font_awesome_flutter: ^9.2.0
-  image_picker: ^0.8.4+5
+  image_picker: ^0.8.4+6
   internet_connection_checker: ^0.0.1+3
   intl: ^0.17.0
   lottie: ^1.2.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^1.0.0
 flutter:
   uses-material-design: true
   assets:
