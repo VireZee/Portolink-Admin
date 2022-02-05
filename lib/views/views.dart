@@ -5,6 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lottie/lottie.dart';
 import 'package:portolink_admin/services/services.dart';
 
+part 'mainmenu.dart';
 part 'signin.dart';
 part 'signup.dart';
 part 'splash.dart';
