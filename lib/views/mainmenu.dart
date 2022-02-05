@@ -9,10 +9,10 @@ class MainMenu extends StatefulWidget {
 class _MainMenuState extends State<MainMenu> {
   static int _selectedIntex = 3;
   final List<Widget> _widgetOptions = <Widget>[
-    const Home(),
-    const Chat(),
-    const History(),
-    const Profile()
+    // const Home(),
+    // const Chat(),
+    // const History(),
+    // const Profile()
   ];
   void _onItemTapped(int index) {
     setState(() => _selectedIntex = index);
