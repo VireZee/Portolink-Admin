@@ -37,5 +37,11 @@ class _SplashState extends State<Splash> {
   }
   @override
   Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [Lottie.asset('assets/images/loading.json')]
+      )
+    );
   }
 }
