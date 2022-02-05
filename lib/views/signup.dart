@@ -120,38 +120,6 @@ class _SignUpState extends State<SignUp> {
                             prefixIcon: Padding(
                               padding: EdgeInsets.symmetric(horizontal: 25),
                               child: Icon(
-                                FontAwesomeIcons.phone,
-                                size: 28
-                              )
-                            ),
-                            hintText: 'Phone (+62)'
-                          ),
-                          controller: ctrlPhone,
-                          keyboardType: TextInputType.phone,
-                          textInputAction: TextInputAction.next
-                        )
-                      )
-                    )
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 20),
-                    child: Container(
-                      height: 60,
-                      decoration: BoxDecoration(
-                        color: Colors.grey[500]!.withOpacity(0.5),
-                        borderRadius: BorderRadius.circular(50)
-                      ),
-                      child: Center(
-                        child: TextField(
-                          onChanged: (value) {
-                            isEmpty();
-                          },
-                          style: const TextStyle(fontSize: 25),
-                          decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            prefixIcon: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 25),
-                              child: Icon(
                                 FontAwesomeIcons.envelope,
                                 size: 28
                               )
