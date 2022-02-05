@@ -16,6 +16,17 @@ class _SignUpState extends State<SignUp> {
   static bool vis = true;
   static bool load = false;
   static bool btn = true;
+  bool isEmpty() {
+    setState(() {
+      if (ctrlName.text != '' && ctrlEmail.text != '' && ctrlPass.text != '' && ctrlCPass.text != '') {
+        btn = true;
+      }
+      else {
+        btn = false;
+      }
+    });
+    return btn;
+  }
   @override
   Widget build(BuildContext context) {
     return Container();
