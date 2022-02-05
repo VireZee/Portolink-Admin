@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:portolink_admin/shared/shared.dart';
+import 'package:portolink_admin/views/views.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
           routes: {
             // '/': (context) => const Splash(),
             // '/in' : (context) => const SignIn(),
-            // '/up': (context) => const SignUp(),
+            '/up': (context) => const SignUp(),
             // '/main': (context) => const MainMenu()
           }
         );
