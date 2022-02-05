@@ -28,6 +28,19 @@ class _SignUpState extends State<SignUp> {
     return btn;
   }
   @override
+  void initState() {
+    super.initState();
+    ft.init(context);
+  }
+  @override
+  void dispose() {
+    ctrlName.dispose();
+    ctrlEmail.dispose();
+    ctrlPass.dispose();
+    ctrlCPass.dispose();
+    super.dispose();
+  }
+  @override
   Widget build(BuildContext context) {
     return Container();
   }
