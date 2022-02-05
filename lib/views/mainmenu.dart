@@ -68,7 +68,7 @@ class _MainMenuState extends State<MainMenu> {
                         Container(width: size.width * 0.20),
                         IconButton(
                           icon: Icon(
-                            Icons.history,
+                            Icons.list_alt,
                             color: _selectedIntex == 2 ? Colors.blue : null
                           ),
                           onPressed: () => _onItemTapped(2)
