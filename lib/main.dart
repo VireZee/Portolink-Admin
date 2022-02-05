@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
           initialRoute: '/',
           routes: {
             // '/': (context) => const Splash(),
-            // '/in' : (context) => const SignIn(),
+            '/in' : (context) => const SignIn(),
             '/up': (context) => const SignUp(),
             // '/main': (context) => const MainMenu()
           }
