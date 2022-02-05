@@ -60,7 +60,7 @@ class _SignInState extends State<SignIn> {
                         children: const [
                           Spacer(flex: 10),
                           Text(
-                            'Portolink',
+                            'Admin',
                             style: TextStyle(
                               fontFamily: 'Dancing Script',
                               color: Color(0xFF0000FF),
