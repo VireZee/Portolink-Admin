@@ -16,9 +16,8 @@ class _MainMenuState extends State<MainMenu> {
   ];
   void _onItemTapped(int index) {
     setState(() => _selectedIntex = index);
-  }
+  } 
   @override
   Widget build(BuildContext context) {
-    return Container();
   }
 }
