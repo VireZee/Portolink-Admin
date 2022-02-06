@@ -11,3 +11,4 @@ import 'package:portolink_admin/models/models.dart';
 
 part 'activity.dart';
 part 'auth.dart';
+part 'requests_auth.dart';
