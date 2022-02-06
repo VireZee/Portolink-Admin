@@ -34,4 +34,9 @@ class RequestAuth {
     });
     return true;
   }
+  static Future<bool> deleted() async {
+    await Firebase.initializeApp();
+    await rCollection.doc(rDocument!.id).delete().then((value) => true);
+    return true;
+  }
 }
