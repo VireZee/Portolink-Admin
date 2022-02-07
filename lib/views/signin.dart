@@ -156,19 +156,6 @@ class _SignInState extends State<SignIn> {
                       )
                     )
                   ),
-                  Row(
-                    children: const [
-                      Spacer(flex: 10),
-                      Text(
-                        'Forgot Password',
-                        style: TextStyle(
-                          fontFamily: 'Roboto',
-                          fontSize: 15
-                        )
-                      ),
-                      Spacer()
-                    ]
-                  ),
                   const SizedBox(height: 20),
                   SizedBox(
                     height: 40,
