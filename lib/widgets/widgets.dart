@@ -8,5 +8,6 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:portolink_admin/models/models.dart';
 import 'package:portolink_admin/services/services.dart';
 import 'package:portolink_admin/shared/shared.dart';
+import 'package:portolink_admin/views/views.dart';
 
 part 'profileview.dart';
