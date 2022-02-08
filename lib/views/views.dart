@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,11 @@ import 'package:lottie/lottie.dart';
 import 'package:portolink_admin/models/models.dart';
 import 'package:portolink_admin/services/services.dart';
 
+part 'chat.dart';
+part 'home.dart';
 part 'mainmenu.dart';
+part 'profile.dart';
 part 'signin.dart';
 part 'signup.dart';
 part 'splash.dart';
+part 'transaction.dart';
