@@ -74,7 +74,7 @@ class _ProfileState extends State<Profile> {
                   child: Activity.loading()
                 );
               }
-              return ProfileView(users: snapshot.data! as Admins);
+              return ProfileView(admins: snapshot.data! as Admins);
             }
           );
         }
