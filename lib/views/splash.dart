@@ -31,7 +31,8 @@ class _SplashState extends State<Splash> {
         toastDuration: const Duration(seconds: 1),
         fadeDuration: 200
       );
-    } else {
+    }
+    else {
       Navigator.pushReplacementNamed(context, '/in');
     }
   }

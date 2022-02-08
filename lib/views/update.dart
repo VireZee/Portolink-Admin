@@ -211,7 +211,8 @@ class _UpdateState extends State<Update> {
                                           );
                                         }
                                       }
-                                    } else {
+                                    }
+                                    else {
                                       setState(() => load = false);
                                       ft.showToast(
                                         child: Activity.showToast(

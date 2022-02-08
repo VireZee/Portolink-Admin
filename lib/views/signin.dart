@@ -252,7 +252,8 @@ class _SignInState extends State<SignIn> {
                               );
                             }
                           }
-                        } else {
+                        }
+                        else {
                           setState(() => load = false);
                           ft.showToast(
                             child: Activity.showToast(
