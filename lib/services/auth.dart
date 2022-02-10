@@ -19,7 +19,7 @@ class Auth {
     final String token;
     final String aid;
     try {
-      UserCredential aCredential = await auth.createUserWithEmailAndPassword(email: admins.email, password: admins.password);
+      final UserCredential aCredential = await auth.createUserWithEmailAndPassword(email: admins.email, password: admins.password);
       aid = aCredential.user!.uid;
       token = (await FirebaseMessaging.instance.getToken())!;
       await aCollection.doc(aid).set({
@@ -61,7 +61,7 @@ class Auth {
     final String token;
     final String aid;
     try {
-      UserCredential uCredential = await auth.signInWithEmailAndPassword(email: email, password: password);
+      final UserCredential uCredential = await auth.signInWithEmailAndPassword(email: email, password: password);
       aid = uCredential.user!.uid;
       // final String admin = aCollection.doc(aid).get().then((DocumentSnapshot doc) async => doc['Administrator']).toString();
       token = (await FirebaseMessaging.instance.getToken())!;
