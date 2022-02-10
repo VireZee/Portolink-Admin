@@ -63,7 +63,6 @@ class Auth {
     try {
       UserCredential uCredential = await auth.signInWithEmailAndPassword(email: email, password: password);
       aid = uCredential.user!.uid;
-      final String admin = aCollection.doc(aid).get().then((DocumentSnapshot doc) async => doc['Administrator']).toString();
       token = (await FirebaseMessaging.instance.getToken())!;
       await aCollection.doc(aid).update({
         'Is On': true,
