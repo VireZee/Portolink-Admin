@@ -96,7 +96,7 @@ class _UpdateState extends State<Update> {
                             ),
                             const SizedBox(height: 16),
                             const Text(
-                              'Phone',
+                              'Email',
                               style: TextStyle(
                                 fontFamily: 'Roboto',
                                 fontSize: 25

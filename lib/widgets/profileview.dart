@@ -101,7 +101,7 @@ class _ProfileViewState extends State<ProfileView> {
                         padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 12, horizontal: 32))
                       )
                     ),
-                    const SizedBox(height: 70),
+                    const SizedBox(height: 140),
                     Material(
                       child: InkWell(
                         onTap: () async {
