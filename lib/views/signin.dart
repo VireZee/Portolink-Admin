@@ -203,6 +203,7 @@ class _SignInState extends State<SignIn> {
                         else if (sub) {
                           if (_formKey.currentState!.validate()) {
                             final String msg = await Auth.signIn(ctrlEmail.text, ctrlPass.text);
+                            final String admin = Auth.aCollection.doc(Auth.auth.currentUser!.uid).get().then((DocumentSnapshot doc) async => doc['Administrator']).toString();
                             if (msg == 'Granted') {
                               setState(() => load = false);
                               Navigator.pushReplacementNamed(context, '/main');
@@ -245,6 +246,17 @@ class _SignInState extends State<SignIn> {
                               ft.showToast(
                                 child: Activity.showToast(
                                   'This email has been disabled',
+                                  const Color(0xFFFF0000)
+                                ),
+                                toastDuration: const Duration(seconds: 1),
+                                fadeDuration: 200
+                              );
+                            }
+                            else if (admin == 'false') {
+                              setState(() => load = false);
+                              ft.showToast(
+                                child: Activity.showToast(
+                                  'Access Denied',
                                   const Color(0xFFFF0000)
                                 ),
                                 toastDuration: const Duration(seconds: 1),

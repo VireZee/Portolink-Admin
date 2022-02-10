@@ -1,8 +1,8 @@
 part of 'services.dart';
 
 class Auth {
-  static FirebaseAuth auth = FirebaseAuth.instance;
-  static CollectionReference aCollection = FirebaseFirestore.instance.collection('Admins');
+  static final FirebaseAuth auth = FirebaseAuth.instance;
+  static final CollectionReference aCollection = FirebaseFirestore.instance.collection('Admins');
   static String convertToTitleCase(String text) {
     final List<String> words = text.split(' ');
     final cap = words.map((word) {
