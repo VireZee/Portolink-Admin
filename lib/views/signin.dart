@@ -251,6 +251,17 @@ class _SignInState extends State<SignIn> {
                                 fadeDuration: 200
                               );
                             }
+                            else if (msg == 'Denied') {
+                              setState(() => load = false);
+                              ft.showToast(
+                                child: Activity.showToast(
+                                  'Access Denied',
+                                  const Color(0xFFFF0000)
+                                ),
+                                toastDuration: const Duration(seconds: 1),
+                                fadeDuration: 200
+                              );
+                            }
                           }
                         }
                         else {
