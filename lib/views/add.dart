@@ -11,7 +11,7 @@ class _AddState extends State<Add> {
   final ctrlName = TextEditingController();
   final ctrlDesc = TextEditingController();
   final ctrlPrice = TextEditingController();
-  PickedFile? imageFile;
+  XFile? imageFile;
   final ft = FToast();
   bool load = false;
   bool btn = true;
@@ -29,12 +29,32 @@ class _AddState extends State<Add> {
   final ImagePicker imagePicker = ImagePicker();
   Future chooseFile(String type) async {
     ImageSource imgSrc = ImageSource.gallery;
-    final selectedImage = await imagePicker.getImage(
+    final selectedImage = await imagePicker.pickImage(
       source: imgSrc,
       imageQuality: 100
     );
     setState(() {
       imageFile = selectedImage;
+    });
+  }
+  @override
+  void initState() {
+    super.initState();
+    ft.init(context);
+  }
+  @override
+  void dispose() {
+    ctrlName.dispose();
+    ctrlDesc.dispose();
+    ctrlPrice.dispose();
+    super.dispose();
+  }
+  void clearForm() {
+    ctrlName.clear();
+    ctrlDesc.clear();
+    ctrlPrice.clear();
+    setState(() {
+      imageFile = null;
     });
   }
   @override
