@@ -10,20 +10,17 @@ class TemplatesAuth {
   static Future<bool> addTemplate(Templates templates, PickedFile imgFile) async {
     await Firebase.initializeApp();
     final String dateNow = Activity.dateNow();
+    ref = FirebaseStorage.instance.ref().child('Template Photos').child(tDocument!.id + 'jpg');
+    uploadTask = ref!.putFile(File(imgFile.path));
+    await uploadTask!.whenComplete(() => ref!.getDownloadURL().then((value) => imgUrl = value));
     await tCollection.doc(tDocument!.id).set({
       'TID': tDocument!.id,
-      'Photo': templates.photo,
+      'Photo': imgUrl,
       'Name': templates.name,
       'Description': templates.desc,
       'Price': templates.price,
       'Created': dateNow,
       'Updated': '-'
-    });
-    ref = FirebaseStorage.instance.ref().child('Template Photos').child(tDocument!.id + 'jpg');
-    uploadTask = ref!.putFile(File(imgFile.path));
-    await uploadTask!.whenComplete(() => ref!.getDownloadURL().then((value) => imgUrl = value));
-    tCollection.doc(tDocument!.id).update({
-      'Photo': imgUrl
     });
     return true;
   }
