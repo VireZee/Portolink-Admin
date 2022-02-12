@@ -93,9 +93,7 @@ class _SignInState extends State<SignIn> {
                       ),
                       child: Center(
                         child: TextField(
-                          onChanged: (value) {
-                            isEmpty();
-                          },
+                          onChanged: (value) => isEmpty(),
                           style: const TextStyle(fontSize: 25),
                           decoration: const InputDecoration(
                             border: InputBorder.none,
@@ -125,9 +123,7 @@ class _SignInState extends State<SignIn> {
                       ),
                       child: Center(
                         child: TextField(
-                          onChanged: (value) {
-                            isEmpty();
-                          },
+                          onChanged: (value) => isEmpty(),
                           style: const TextStyle(fontSize: 25),
                           decoration: InputDecoration(
                             border: InputBorder.none,

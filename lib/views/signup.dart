@@ -79,9 +79,7 @@ class _SignUpState extends State<SignUp> {
                       ),
                       child: Center(
                         child: TextField(
-                          onChanged: (value) {
-                            isEmpty();
-                          },
+                          onChanged: (value) => isEmpty(),
                           style: const TextStyle(fontSize: 25),
                           decoration: const InputDecoration(
                             border: InputBorder.none,
@@ -111,9 +109,7 @@ class _SignUpState extends State<SignUp> {
                       ),
                       child: Center(
                         child: TextField(
-                          onChanged: (value) {
-                            isEmpty();
-                          },
+                          onChanged: (value) => isEmpty(),
                           style: const TextStyle(fontSize: 25),
                           decoration: const InputDecoration(
                             border: InputBorder.none,
@@ -143,9 +139,7 @@ class _SignUpState extends State<SignUp> {
                       ),
                       child: Center(
                         child: TextField(
-                          onChanged: (value) {
-                            isEmpty();
-                          },
+                          onChanged: (value) => isEmpty(),
                           style: const TextStyle(fontSize: 25),
                           decoration: InputDecoration(
                             border: InputBorder.none,
@@ -184,9 +178,7 @@ class _SignUpState extends State<SignUp> {
                       ),
                       child: Center(
                         child: TextField(
-                          onChanged: (value) {
-                            isEmpty();
-                          },
+                          onChanged: (value) => isEmpty(),
                           style: const TextStyle(fontSize: 25),
                           decoration: const InputDecoration(
                             border: InputBorder.none,
