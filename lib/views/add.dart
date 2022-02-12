@@ -59,6 +59,11 @@ class _AddState extends State<Add> {
   }
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Add a New Template'),
+        centerTitle: true
+      )
+    );
   }
 }
