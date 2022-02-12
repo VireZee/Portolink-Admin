@@ -24,4 +24,20 @@ class TemplatesAuth {
     });
     return true;
   }
+  static Future<bool> updateTemplate(Templates templates, PickedFile imgFile, String photo) async {
+    await Firebase.initializeApp();
+    String dateNow = Activity.dateNow();
+    ref = FirebaseStorage.instance.ref().child('Template Photos').child(tDocument!.id + 'jpg');
+    uploadTask = ref!.putFile(File(imgFile.path));
+    await uploadTask!.whenComplete(() => ref!.getDownloadURL().then((value) => imgUrl = value));
+    await tCollection.doc(tDocument!.id).update({
+      'TID': tDocument!.id,
+      'Photo': imgUrl,
+      'Name': templates.name,
+      'Description': templates.desc,
+      'Price': templates.price,
+      'Updated': dateNow
+    });
+    return true;
+  }
 }
