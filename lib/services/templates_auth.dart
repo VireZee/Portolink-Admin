@@ -21,6 +21,10 @@ class TemplatesAuth {
     });
     ref = FirebaseStorage.instance.ref().child('Template Photos').child(tDocument!.id + 'jpg');
     uploadTask = ref!.putFile(File(imgFile.path));
+    await uploadTask!.whenComplete(() => ref!.getDownloadURL().then((value) => imgUrl = value));
+    tCollection.doc(tDocument!.id).update({
+      'Photo': imgUrl
+    });
     return true;
   }
 }
