@@ -14,6 +14,7 @@ import 'package:portolink_admin/services/services.dart';
 import 'package:portolink_admin/shared/shared.dart';
 import 'package:portolink_admin/widgets/widgets.dart';
 
+part 'catalog.dart';
 part 'chat.dart';
 part 'home.dart';
 part 'mainmenu.dart';
