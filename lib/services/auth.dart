@@ -133,13 +133,11 @@ class Auth {
     await Firebase.initializeApp();
     final String dateNow = Activity.dateNow();
     final String aid = auth.currentUser!.uid;
-    await auth.signOut().whenComplete(() {
-      aCollection.doc(aid).update({
-        'Is On': false,
-        'Token': '-',
-        'Left': dateNow
-      });
-    });
+    await auth.signOut().whenComplete(() => aCollection.doc(aid).update({
+      'Is On': false,
+      'Token': '-',
+      'Left': dateNow
+    }));
     return true;
   }
   static Future<bool> deleteAccount() async {
