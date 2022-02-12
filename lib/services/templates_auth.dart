@@ -11,7 +11,11 @@ class TemplatesAuth {
     await Firebase.initializeApp();
     final String dateNow = Activity.dateNow();
     await tCollection.doc(tDocument!.id).set({
-      
+      'TID': tDocument!.id,
+      'Photo': templates.photo,
+      'Name': templates.name,
+      'Description': templates.desc,
+      'Price': templates.price
     });
     return true;
   }
