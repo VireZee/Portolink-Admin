@@ -40,4 +40,10 @@ class TemplatesAuth {
     });
     return true;
   }
+  static Future<bool> deleteTemplate() async {
+    await Firebase.initializeApp();
+    await tCollection.doc(tDocument!.id).delete();
+    await FirebaseStorage.instance.ref().child('Template Photos').child(tDocument!.id + 'jpg').delete();
+    return true;
+  }
 }
