@@ -6,6 +6,7 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 class _HomeState extends State<Home> {
+  final CollectionReference tCollection = TemplatesAuth.tCollection;
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
