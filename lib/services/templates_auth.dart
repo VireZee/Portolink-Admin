@@ -15,8 +15,12 @@ class TemplatesAuth {
       'Photo': templates.photo,
       'Name': templates.name,
       'Description': templates.desc,
-      'Price': templates.price
+      'Price': templates.price,
+      'Created': dateNow,
+      'Updated': '-'
     });
+    ref = FirebaseStorage.instance.ref().child('Template Photos').child(tDocument!.id + 'jpg');
+    uploadTask = ref!.putFile(File(imgFile.path));
     return true;
   }
 }
