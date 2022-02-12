@@ -7,4 +7,7 @@ class Templates {
   static Reference? ref;
   static UploadTask? uploadTask;
   static String? imgUrl;
+  static Future<bool> addTemplate(Templates templates, PickedFile imgFile) async {
+    
+  }
 }
