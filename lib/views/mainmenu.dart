@@ -40,7 +40,7 @@ class _MainMenuState extends State<MainMenu> {
                     heightFactor: 0.6,
                     child: FloatingActionButton(
                       backgroundColor: Colors.blue,
-                      child: const Icon(Icons.shopping_bag),
+                      child: const Icon(Icons.add),
                       elevation: 0.1,
                       onPressed: () {}
                     )
