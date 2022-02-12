@@ -13,9 +13,9 @@ class _SignUpState extends State<SignUp> {
   final ctrlPass = TextEditingController();
   final ctrlCPass = TextEditingController();
   final ft = FToast();
-  static bool vis = true;
-  static bool load = false;
-  static bool btn = true;
+  bool vis = true;
+  bool load = false;
+  bool btn = true;
   bool isEmpty() {
     setState(() {
       if (ctrlName.text != '' && ctrlEmail.text != '' && ctrlPass.text != '' && ctrlCPass.text != '') {

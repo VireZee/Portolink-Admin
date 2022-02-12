@@ -11,9 +11,9 @@ class _SignInState extends State<SignIn> {
   final ctrlEmail = TextEditingController();
   final ctrlPass = TextEditingController();
   final ft = FToast();
-  static bool vis = true;
-  static bool load = false;
-  static bool btn = true;
+  bool vis = true;
+  bool load = false;
+  bool btn = true;
   bool isEmpty() {
     setState(() {
       if (ctrlEmail.text != '' && ctrlPass.text != '') {
