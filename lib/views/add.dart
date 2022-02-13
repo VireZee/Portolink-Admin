@@ -219,6 +219,17 @@ class _AddState extends State<Add> {
                                       fadeDuration: 200
                                     );
                                   }
+                                  else if (imageFile == null) {
+                                    setState(() => load = false);
+                                    ft.showToast(
+                                      child: Activity.showToast(
+                                        'Pick an image',
+                                        const Color(0xFFFF0000)
+                                      ),
+                                      toastDuration: const Duration(seconds: 1),
+                                      fadeDuration: 200
+                                    );
+                                  }
                                   else if (sub) {
                                     if (_formKey.currentState!.validate()) {
                                       final Templates templates = Templates(
