@@ -59,28 +59,28 @@ class _AddState extends State<Add> {
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: const BackButton(),
-        backgroundColor: Colors.transparent,
-        toolbarHeight: 75,
-        elevation: 0,
-        title: const Text('Add a New Template'),
-        centerTitle: true
-      ),
-      backgroundColor: Colors.transparent,
-      body: Stack(
-        children: [
-          Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/images/edit_bg.jpg'),
-                fit: BoxFit.fill
-              )
+    return Stack(
+      children: [
+        Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/edit_bg.jpg'),
+              fit: BoxFit.fill
             )
+          ),
+          child: Scaffold(
+            appBar: AppBar(
+              leading: const BackButton(),
+              backgroundColor: Colors.transparent,
+              toolbarHeight: 75,
+              elevation: 0,
+              title: const Text('Add a New Template'),
+              centerTitle: true
+            ),
+            backgroundColor: Colors.transparent
           )
-        ],
-      ),
+        )
+      ]
     );
   }
 }
