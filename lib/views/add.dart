@@ -27,7 +27,7 @@ class _AddState extends State<Add> {
     return btn;
   }
   final ImagePicker imagePicker = ImagePicker();
-  Future chooseFile(String type) async {
+  Future chooseFile() async {
     ImageSource imgSrc = ImageSource.gallery;
     final selectedImage = await imagePicker.pickImage(
       source: imgSrc,
@@ -144,7 +144,7 @@ class _AddState extends State<Add> {
                           ? Row(
                             children: [
                               ElevatedButton.icon(
-                                onPressed: () => chooseFile('gallery'),
+                                onPressed: () => chooseFile(),
                                 icon: const Icon(Icons.image),
                                 label: const Text("Pick Image")
                               ),
@@ -155,7 +155,7 @@ class _AddState extends State<Add> {
                           : Row(
                             children: [
                               ElevatedButton.icon(
-                                onPressed: () => chooseFile('gallery'),
+                                onPressed: () => chooseFile(),
                                 icon: const Icon(Icons.image),
                                 label: const Text("Repick")
                               ),
