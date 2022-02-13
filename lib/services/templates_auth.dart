@@ -7,7 +7,7 @@ class TemplatesAuth {
   static Reference? ref;
   static UploadTask? uploadTask;
   static String? imgUrl;
-  static Future<bool> addTemplate(Templates templates, PickedFile imgFile) async {
+  static Future<bool> addTemplate(Templates templates, XFile imgFile) async {
     await Firebase.initializeApp();
     final String dateNow = Activity.dateNow();
     ref = FirebaseStorage.instance.ref().child('Template Photos').child(tDocument!.id + 'jpg');
@@ -24,7 +24,7 @@ class TemplatesAuth {
     });
     return true;
   }
-  static Future<bool> updateTemplate(Templates templates, PickedFile imgFile, String photo) async {
+  static Future<bool> updateTemplate(Templates templates, XFile imgFile, String photo) async {
     await Firebase.initializeApp();
     String dateNow = Activity.dateNow();
     ref = FirebaseStorage.instance.ref().child('Template Photos').child(tDocument!.id + 'jpg');

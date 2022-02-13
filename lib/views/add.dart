@@ -27,8 +27,8 @@ class _AddState extends State<Add> {
     return btn;
   }
   final ImagePicker imagePicker = ImagePicker();
-  Future chooseFile() async {
-    ImageSource imgSrc = ImageSource.gallery;
+  Future<dynamic> chooseFile() async {
+    const ImageSource imgSrc = ImageSource.gallery;
     final selectedImage = await imagePicker.pickImage(
       source: imgSrc,
       imageQuality: 100
@@ -170,7 +170,90 @@ class _AddState extends State<Add> {
                               width: 250,
                               child: ElevatedButton.icon(
                                 onPressed: isEmpty()
-                                ? () async {}
+                                ? () async {
+                                  setState(() => load = true);
+                                  FocusScope.of(context).requestFocus(FocusNode());
+                                  final net = await (Connectivity().checkConnectivity());
+                                  final sub = await InternetConnectionChecker().hasConnection;
+                                  if (net == ConnectivityResult.none) {
+                                    setState(() => load = false);
+                                    ft.showToast(
+                                      child: Activity.showToast(
+                                        'No internet connection',
+                                        const Color(0xFFFF0000)
+                                      ),
+                                      toastDuration: const Duration(seconds: 1),
+                                      fadeDuration: 200
+                                    );
+                                  }
+                                  else if (ctrlName.text.isEmpty) {
+                                    setState(() => load = false);
+                                    ft.showToast(
+                                      child: Activity.showToast(
+                                        'Name can\'t be empty',
+                                        const Color(0xFFFF0000)
+                                      ),
+                                      toastDuration: const Duration(seconds: 1),
+                                      fadeDuration: 200
+                                    );
+                                  }
+                                  else if (ctrlDesc.text.isEmpty) {
+                                    setState(() => load = false);
+                                    ft.showToast(
+                                      child: Activity.showToast(
+                                        'Description can\'t be empty',
+                                        const Color(0xFFFF0000)
+                                      ),
+                                      toastDuration: const Duration(seconds: 1),
+                                      fadeDuration: 200
+                                    );
+                                  }
+                                  else if (ctrlPrice.text.isEmpty) {
+                                    setState(() => load = false);
+                                    ft.showToast(
+                                      child: Activity.showToast(
+                                        'Price can\'t be empty',
+                                        const Color(0xFFFF0000)
+                                      ),
+                                      toastDuration: const Duration(seconds: 1),
+                                      fadeDuration: 200
+                                    );
+                                  }
+                                  else if (sub) {
+                                    if (_formKey.currentState!.validate()) {
+                                      final Templates templates = Templates(
+                                        ctrlName.text,
+                                        ctrlDesc.text,
+                                        ctrlPrice.text
+                                      );
+                                      await TemplatesAuth.addTemplate(templates, imageFile!).then((value) {
+                                        if (value == true) {
+                                          setState(() => load = false);
+                                          ft.showToast(
+                                            child: Activity.showToast(
+                                              'Published',
+                                              Colors.blue
+                                            ),
+                                            toastDuration: const Duration(seconds: 1),
+                                            fadeDuration: 200
+                                          );
+                                          clearForm();
+                                        }
+                                      });
+                                    }
+                                  }
+                                  else {
+                                    setState(() => load = false);
+                                    ft.showToast(
+                                      child: Activity.showToast(
+                                        'No internet connection',
+                                        const Color(0xFFFF0000)
+                                      ),
+                                      toastDuration: const Duration(seconds: 1),
+                                      fadeDuration: 200
+                                    );
+                                  }
+                                }
                                 : null,
                                 style: ButtonStyle(
                                   overlayColor: MaterialStateProperty.resolveWith((states) {
