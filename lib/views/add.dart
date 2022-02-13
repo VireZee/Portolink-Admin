@@ -11,13 +11,13 @@ class _AddState extends State<Add> {
   final ctrlName = TextEditingController();
   final ctrlDesc = TextEditingController();
   final ctrlPrice = TextEditingController();
-  XFile? imageFile;
+  XFile? imgFile;
   final ft = FToast();
   bool load = false;
   bool btn = true;
   bool isEmpty() {
     setState(() {
-      if (ctrlName.text != '' && ctrlDesc.text != '' && ctrlPrice.text != '') {
+      if (ctrlName.text != '' && ctrlDesc.text != '' && ctrlPrice.text != '' && imgFile != null) {
         btn = true;
       }
       else {
@@ -34,7 +34,7 @@ class _AddState extends State<Add> {
       imageQuality: 100
     );
     setState(() {
-      imageFile = selectedImage;
+      imgFile = selectedImage;
     });
   }
   @override
@@ -54,7 +54,7 @@ class _AddState extends State<Add> {
     ctrlDesc.clear();
     ctrlPrice.clear();
     setState(() {
-      imageFile = null;
+      imgFile = null;
     });
   }
   @override
@@ -140,7 +140,7 @@ class _AddState extends State<Add> {
                             textInputAction: TextInputAction.done
                           ),
                           const SizedBox(height: 16),
-                          imageFile == null
+                          imgFile == null
                           ? Row(
                             children: [
                               ElevatedButton.icon(
@@ -160,7 +160,7 @@ class _AddState extends State<Add> {
                                 label: const Text("Repick")
                               ),
                               const SizedBox(width: 16),
-                              Semantics(child: Image.file(File(imageFile!.path), width: 100))
+                              Semantics(child: Image.file(File(imgFile!.path), width: 100))
                             ]
                           ),
                           const SizedBox(height: 80),
@@ -219,7 +219,7 @@ class _AddState extends State<Add> {
                                       fadeDuration: 200
                                     );
                                   }
-                                  else if (imageFile == null) {
+                                  else if (imgFile == null) {
                                     setState(() => load = false);
                                     ft.showToast(
                                       child: Activity.showToast(
@@ -237,7 +237,7 @@ class _AddState extends State<Add> {
                                         ctrlDesc.text,
                                         ctrlPrice.text
                                       );
-                                      await TemplatesAuth.addTemplate(templates, imageFile!).then((value) {
+                                      await TemplatesAuth.addTemplate(templates, imgFile!).then((value) {
                                         if (value == true) {
                                           setState(() => load = false);
                                           ft.showToast(
@@ -299,14 +299,14 @@ class _AddState extends State<Add> {
                       )
                     )
                   ]
-                ),
-                load == true
-                ? Activity.loading()
-                : Container()
+                )
               ]
             )
           )
-        )
+        ),
+        load == true
+        ? Activity.loading()
+        : Container()
       ]
     );
   }
