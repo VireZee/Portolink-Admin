@@ -91,13 +91,13 @@ class _AddState extends State<Add> {
                         children: [
                           const Text(
                             'Name',
-                            style: TextStyle(fontSize: 25)
+                            style: TextStyle(fontSize: 15)
                           ),
                           const SizedBox(height: 8),
                           TextField(
                             controller: ctrlName,
                             keyboardType: TextInputType.name,
-                            style: const TextStyle(fontSize: 30),
+                            style: const TextStyle(fontSize: 20),
                             decoration: InputDecoration(
                               border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))
                             ),
@@ -106,28 +106,28 @@ class _AddState extends State<Add> {
                           const SizedBox(height: 16),
                           const Text(
                             'Description',
-                            style: TextStyle(fontSize: 25)
+                            style: TextStyle(fontSize: 15)
                           ),
                           const SizedBox(height: 8),
                           TextField(
                             controller: ctrlDesc,
                             keyboardType: TextInputType.text,
-                            style: const TextStyle(fontSize: 30),
+                            style: const TextStyle(fontSize: 20),
                             decoration: InputDecoration(
                               border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))
                             ),
-                            maxLines: 1
+                            maxLines: 3
                           ),
                           const SizedBox(height: 16),
                           const Text(
                             'Price',
-                            style: TextStyle(fontSize: 25)
+                            style: TextStyle(fontSize: 15)
                           ),
                           const SizedBox(height: 8),
                           TextField(
-                            controller: ctrlName,
+                            controller: ctrlPrice,
                             keyboardType: TextInputType.number,
-                            style: const TextStyle(fontSize: 30),
+                            style: const TextStyle(fontSize: 20),
                             decoration: InputDecoration(
                               border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))
                             ),
