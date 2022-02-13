@@ -137,36 +137,38 @@ class _AddState extends State<Add> {
                             textInputAction: TextInputAction.done
                           ),
                           const SizedBox(height: 80),
-                          SizedBox(
-                            height: 40,
-                            width: 500,
-                            child: ElevatedButton.icon(
-                              onPressed: () {},
-                              style: ButtonStyle(
-                                overlayColor: MaterialStateProperty.resolveWith((states) {
-                                  return states.contains(MaterialState.pressed)
-                                  ? Colors.blue
-                                  : null;
-                                }),
-                                foregroundColor: MaterialStateProperty.resolveWith((states) {
-                                  return states.contains(MaterialState.pressed)
-                                  ? const Color(0xFF00FF00)
-                                  : null;
-                                }),
-                                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
+                          Center(
+                            child: SizedBox(
+                              height: 50,
+                              width: 250,
+                              child: ElevatedButton.icon(
+                                onPressed: () {},
+                                style: ButtonStyle(
+                                  overlayColor: MaterialStateProperty.resolveWith((states) {
+                                    return states.contains(MaterialState.pressed)
+                                    ? Colors.blue
+                                    : null;
+                                  }),
+                                  foregroundColor: MaterialStateProperty.resolveWith((states) {
+                                    return states.contains(MaterialState.pressed)
+                                    ? const Color(0xFF00FF00)
+                                    : null;
+                                  }),
+                                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))
+                                  )
+                                ),
+                                icon: const Icon(Icons.upload),
+                                label: Row(
+                                  children: const [
+                                    Spacer(),
+                                    Text(
+                                      'Publish Template',
+                                      style: TextStyle(fontSize: 20)
+                                    ),
+                                    Spacer(flex: 2)
+                                  ]
                                 )
-                              ),
-                              icon: const Icon(Icons.upload),
-                              label: Row(
-                                children: const [
-                                  Spacer(),
-                                  Text(
-                                    'Publish Template',
-                                    style: TextStyle(fontSize: 20)
-                                  ),
-                                  Spacer(flex: 2)
-                                ]
                               )
                             )
                           )
