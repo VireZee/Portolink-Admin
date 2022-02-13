@@ -22,6 +22,8 @@ class Auth {
       final UserCredential aCredential = await auth.createUserWithEmailAndPassword(email: admins.email, password: admins.password);
       aid = aCredential.user!.uid;
       token = (await FirebaseMessaging.instance.getToken())!;
+      await auth.currentUser!.updatePhotoURL(admins.photo);
+      await auth.currentUser!.updateDisplayName(convertToTitleCase(admins.name));
       await aCollection.doc(aid).set({
         'AID': aid,
         'Photo': '-',
@@ -34,8 +36,6 @@ class Auth {
         'Entered': '-',
         'Left': '-'
       }).then((value) => msg = 'Signed');
-      await auth.currentUser!.updatePhotoURL(admins.photo);
-      await auth.currentUser!.updateDisplayName(convertToTitleCase(admins.name));
       return msg;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
