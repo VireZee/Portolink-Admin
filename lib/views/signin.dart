@@ -11,9 +11,9 @@ class _SignInState extends State<SignIn> {
   final ctrlEmail = TextEditingController();
   final ctrlPass = TextEditingController();
   final ft = FToast();
-  static bool vis = true;
-  static bool load = false;
-  static bool btn = true;
+  bool vis = true;
+  bool load = false;
+  bool btn = true;
   bool isEmpty() {
     setState(() {
       if (ctrlEmail.text != '' && ctrlPass.text != '') {
@@ -93,9 +93,7 @@ class _SignInState extends State<SignIn> {
                       ),
                       child: Center(
                         child: TextField(
-                          onChanged: (value) {
-                            isEmpty();
-                          },
+                          onChanged: (value) => isEmpty(),
                           style: const TextStyle(fontSize: 25),
                           decoration: const InputDecoration(
                             border: InputBorder.none,
@@ -125,9 +123,7 @@ class _SignInState extends State<SignIn> {
                       ),
                       child: Center(
                         child: TextField(
-                          onChanged: (value) {
-                            isEmpty();
-                          },
+                          onChanged: (value) => isEmpty(),
                           style: const TextStyle(fontSize: 25),
                           decoration: InputDecoration(
                             border: InputBorder.none,
@@ -251,6 +247,17 @@ class _SignInState extends State<SignIn> {
                                 fadeDuration: 200
                               );
                             }
+                            else if (msg == 'Denied') {
+                              setState(() => load = false);
+                              ft.showToast(
+                                child: Activity.showToast(
+                                  'Access Denied',
+                                  const Color(0xFFFF0000)
+                                ),
+                                toastDuration: const Duration(seconds: 1),
+                                fadeDuration: 200
+                              );
+                            }
                           }
                         }
                         else {
@@ -278,7 +285,7 @@ class _SignInState extends State<SignIn> {
                           : null;
                         }),
                         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
+                          RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))
                         )
                       ),
                       icon: const Icon(Icons.login),

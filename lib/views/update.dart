@@ -13,7 +13,7 @@ class _UpdateState extends State<Update> {
   final ctrlEmail = TextEditingController();
   final ft = FToast();
   static bool load = false;
-  final CollectionReference uCollection = FirebaseFirestore.instance.collection('Users');
+  final CollectionReference uCollection = FirebaseFirestore.instance.collection('Admins');
   @override
   void initState() {
     ctrlName.text =  widget.name;
@@ -36,7 +36,7 @@ class _UpdateState extends State<Update> {
           Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/images/edit_bg.jpg'),
+                image: AssetImage('assets/images/update_bg.jpg'),
                 fit: BoxFit.fill
               )
             ),
@@ -92,7 +92,8 @@ class _UpdateState extends State<Update> {
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))
                               ),
-                              maxLines: 1
+                              maxLines: 1,
+                              textInputAction: TextInputAction.next
                             ),
                             const SizedBox(height: 16),
                             const Text(
@@ -113,7 +114,8 @@ class _UpdateState extends State<Update> {
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))
                               ),
-                              maxLines: 1
+                              maxLines: 1,
+                              textInputAction: TextInputAction.done
                             ),
                             const SizedBox(height: 80),
                             Center(

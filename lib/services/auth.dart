@@ -71,7 +71,7 @@ class Auth {
         'Entered': dateNow
       }).then((value) => msg = 'Granted');
       return msg;
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseException catch (e) {
       if (e.code == 'user-not-found') {
         msg = 'None';
       }
@@ -83,6 +83,9 @@ class Auth {
       }
       else if (e.code == 'user-disabled') {
         msg = 'Disabled';
+      }
+      else if (e.code == 'not-found') {
+        msg = 'Denied';
       }
     }
     return msg;

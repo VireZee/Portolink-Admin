@@ -13,9 +13,9 @@ class _SignUpState extends State<SignUp> {
   final ctrlPass = TextEditingController();
   final ctrlCPass = TextEditingController();
   final ft = FToast();
-  static bool vis = true;
-  static bool load = false;
-  static bool btn = true;
+  bool vis = true;
+  bool load = false;
+  bool btn = true;
   bool isEmpty() {
     setState(() {
       if (ctrlName.text != '' && ctrlEmail.text != '' && ctrlPass.text != '' && ctrlCPass.text != '') {
@@ -79,9 +79,7 @@ class _SignUpState extends State<SignUp> {
                       ),
                       child: Center(
                         child: TextField(
-                          onChanged: (value) {
-                            isEmpty();
-                          },
+                          onChanged: (value) => isEmpty(),
                           style: const TextStyle(fontSize: 25),
                           decoration: const InputDecoration(
                             border: InputBorder.none,
@@ -111,9 +109,7 @@ class _SignUpState extends State<SignUp> {
                       ),
                       child: Center(
                         child: TextField(
-                          onChanged: (value) {
-                            isEmpty();
-                          },
+                          onChanged: (value) => isEmpty(),
                           style: const TextStyle(fontSize: 25),
                           decoration: const InputDecoration(
                             border: InputBorder.none,
@@ -143,9 +139,7 @@ class _SignUpState extends State<SignUp> {
                       ),
                       child: Center(
                         child: TextField(
-                          onChanged: (value) {
-                            isEmpty();
-                          },
+                          onChanged: (value) => isEmpty(),
                           style: const TextStyle(fontSize: 25),
                           decoration: InputDecoration(
                             border: InputBorder.none,
@@ -184,9 +178,7 @@ class _SignUpState extends State<SignUp> {
                       ),
                       child: Center(
                         child: TextField(
-                          onChanged: (value) {
-                            isEmpty();
-                          },
+                          onChanged: (value) => isEmpty(),
                           style: const TextStyle(fontSize: 25),
                           decoration: const InputDecoration(
                             border: InputBorder.none,
@@ -365,7 +357,7 @@ class _SignUpState extends State<SignUp> {
                           : null;
                         }),
                         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
+                          RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))
                         )
                       ),
                       icon: const Icon(Icons.verified_user),

@@ -28,7 +28,8 @@ class MyApp extends StatelessWidget {
             '/': (context) => const Splash(),
             '/in' : (context) => const SignIn(),
             '/up': (context) => const SignUp(),
-            '/main': (context) => const MainMenu()
+            '/main': (context) => const MainMenu(),
+            '/add': (context) => const Add()
           }
         );
       }
