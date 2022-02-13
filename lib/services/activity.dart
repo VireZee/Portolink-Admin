@@ -33,7 +33,7 @@ class Activity {
       textColor: Colors.white,
       fontSize: 14
     );
-    DO NOT DELETE!!!!! */
+    DO NOT DELETE!! */
   }
   static Container check() {
     return Container(
@@ -63,7 +63,7 @@ class Activity {
     );
   }
   static String toIDR(String price) {
-    final priceFormat = NumberFormat.currency(locale: 'ID');
-    return priceFormat.format(double.parse(price));
+    final NumberFormat priceFormat = NumberFormat.currency(locale: 'id', symbol: 'Rp. ');
+    return priceFormat.format(price);
   }
 }
