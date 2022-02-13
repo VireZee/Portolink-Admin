@@ -118,6 +118,22 @@ class _AddState extends State<Add> {
                             ),
                             maxLines: 1
                           ),
+                          const SizedBox(height: 16),
+                          const Text(
+                            'Price',
+                            style: TextStyle(fontSize: 25)
+                          ),
+                          const SizedBox(height: 8),
+                          TextField(
+                            controller: ctrlName,
+                            keyboardType: TextInputType.number,
+                            style: const TextStyle(fontSize: 30),
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))
+                            ),
+                            maxLines: 1
+                          ),
+                          const SizedBox(height: 16),
                           const SizedBox(height: 80)
                         ]
                       )
