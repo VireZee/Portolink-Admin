@@ -29,7 +29,6 @@ class Auth {
         'Email': admins.email.replaceAll(' ', '').toLowerCase(),
         'Password': sha512.convert(utf8.encode(sha512.convert(utf8.encode(admins.password)).toString())).toString(),
         'Token': token,
-        'Administrator': true,
         'Created': dateNow,
         'Updated': '-',
         'Entered': '-',
@@ -144,8 +143,8 @@ class Auth {
   static Future<bool> deleteAccount() async {
     await Firebase.initializeApp();
     final String aid = auth.currentUser!.uid;
-    await aCollection.doc(aid).delete();
-    await auth.currentUser!.delete();
+    aCollection.doc(aid).delete();
+    auth.currentUser!.delete();
     return true;
   }
 }
