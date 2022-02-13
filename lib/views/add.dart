@@ -77,7 +77,23 @@ class _AddState extends State<Add> {
               title: const Text('Add a New Template'),
               centerTitle: true
             ),
-            backgroundColor: Colors.transparent
+            backgroundColor: Colors.transparent,
+            body: Stack(
+              children: [
+                ListView(
+                  padding: const EdgeInsets.symmetric(horizontal: 32),
+                  physics: const BouncingScrollPhysics(),
+                  children: [
+                    Form(
+                      key: _formKey,
+                      child: Column(
+                        
+                      ),
+                    )
+                  ],
+                )
+              ]
+            )
           )
         )
       ]
