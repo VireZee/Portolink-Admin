@@ -72,7 +72,7 @@ class _AddState extends State<Add> {
             appBar: AppBar(
               leading: const BackButton(),
               backgroundColor: Colors.transparent,
-              toolbarHeight: 75,
+              toolbarHeight: 60,
               elevation: 0,
               title: const Text('Add a New Template'),
               centerTitle: true
@@ -101,7 +101,8 @@ class _AddState extends State<Add> {
                             decoration: InputDecoration(
                               border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))
                             ),
-                            maxLines: 1
+                            maxLines: 1,
+                            textInputAction: TextInputAction.next
                           ),
                           const SizedBox(height: 16),
                           const Text(
@@ -116,7 +117,8 @@ class _AddState extends State<Add> {
                             decoration: InputDecoration(
                               border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))
                             ),
-                            maxLines: 3
+                            maxLines: 3,
+                            textInputAction: TextInputAction.next
                           ),
                           const SizedBox(height: 16),
                           const Text(
@@ -131,7 +133,8 @@ class _AddState extends State<Add> {
                             decoration: InputDecoration(
                               border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))
                             ),
-                            maxLines: 1
+                            maxLines: 1,
+                            textInputAction: TextInputAction.done
                           ),
                           const SizedBox(height: 80)
                         ]
