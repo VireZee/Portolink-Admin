@@ -25,7 +25,7 @@ class RequestsAuth {
   }
   static Future<bool> rejected() async {
     await Firebase.initializeApp();
-    await rCollection.doc(rDocument!.id).update ({
+    await rCollection.doc(rDocument!.id).update({
       'Pending Status': {
         'Status': 'Rejected'
       }
