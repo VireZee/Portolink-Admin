@@ -87,10 +87,42 @@ class _AddState extends State<Add> {
                     Form(
                       key: _formKey,
                       child: Column(
-                        
-                      ),
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Name',
+                            style: TextStyle(fontSize: 25)
+                          ),
+                          const SizedBox(height: 8),
+                          TextField(
+                            controller: ctrlName,
+                            keyboardType: TextInputType.name,
+                            style: const TextStyle(fontSize: 30),
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))
+                            ),
+                            maxLines: 1
+                          ),
+                          const SizedBox(height: 16),
+                          const Text(
+                            'Description',
+                            style: TextStyle(fontSize: 25)
+                          ),
+                          const SizedBox(height: 8),
+                          TextField(
+                            controller: ctrlDesc,
+                            keyboardType: TextInputType.text,
+                            style: const TextStyle(fontSize: 30),
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))
+                            ),
+                            maxLines: 1
+                          ),
+                          const SizedBox(height: 80)
+                        ]
+                      )
                     )
-                  ],
+                  ]
                 )
               ]
             )
