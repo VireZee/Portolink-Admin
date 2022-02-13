@@ -223,7 +223,7 @@ class _AddState extends State<Add> {
                                     setState(() => load = false);
                                     ft.showToast(
                                       child: Activity.showToast(
-                                        'Pick an',
+                                        'Pick an image',
                                         const Color(0xFFFF0000)
                                       ),
                                       toastDuration: const Duration(seconds: 1),
@@ -299,7 +299,10 @@ class _AddState extends State<Add> {
                       )
                     )
                   ]
-                )
+                ),
+                load == true
+                ? Activity.loading()
+                : Container()
               ]
             )
           )
