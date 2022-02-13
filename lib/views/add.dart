@@ -144,7 +144,22 @@ class _AddState extends State<Add> {
                               ElevatedButton.icon(
                                 onPressed: () => chooseFile(),
                                 icon: const Icon(Icons.image),
-                                label: const Text("Pick Image")
+                                label: const Text("Pick Image"),
+                                style: ButtonStyle(
+                                  overlayColor: MaterialStateProperty.resolveWith((states) {
+                                    return states.contains(MaterialState.pressed)
+                                    ? Colors.blue
+                                    : null;
+                                  }),
+                                  foregroundColor: MaterialStateProperty.resolveWith((states) {
+                                    return states.contains(MaterialState.pressed)
+                                    ? const Color(0xFF00FF00)
+                                    : null;
+                                  }),
+                                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))
+                                  )
+                                )
                               ),
                               const SizedBox(width: 16),
                               const Text("File not found.", style: TextStyle(color: Colors.red))
@@ -155,7 +170,22 @@ class _AddState extends State<Add> {
                               ElevatedButton.icon(
                                 onPressed: () => chooseFile(),
                                 icon: const Icon(Icons.image),
-                                label: const Text("Repick")
+                                label: const Text("Repick"),
+                                style: ButtonStyle(
+                                  overlayColor: MaterialStateProperty.resolveWith((states) {
+                                    return states.contains(MaterialState.pressed)
+                                    ? Colors.blue
+                                    : null;
+                                  }),
+                                  foregroundColor: MaterialStateProperty.resolveWith((states) {
+                                    return states.contains(MaterialState.pressed)
+                                    ? const Color(0xFF00FF00)
+                                    : null;
+                                  }),
+                                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))
+                                  )
+                                )
                               ),
                               const SizedBox(width: 16),
                               Semantics(child: Image.file(File(imgFile!.path), width: 100))

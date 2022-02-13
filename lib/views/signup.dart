@@ -357,7 +357,7 @@ class _SignUpState extends State<SignUp> {
                           : null;
                         }),
                         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
+                          RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))
                         )
                       ),
                       icon: const Icon(Icons.verified_user),

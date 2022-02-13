@@ -19,10 +19,10 @@ class TemplatesAuth {
       'Created': dateNow,
       'Updated': '-'
     });
-    ref = FirebaseStorage.instance.ref().child('Template Photos').child(tDocument!.id + '.jpg');
+    ref = FirebaseStorage.instance.ref().child('Template Photos').child(templates.name + '.jpg');
     uploadTask = ref!.putFile(File(imgFile.path));
     await uploadTask!.whenComplete(() => ref!.getDownloadURL().then((value) => imgUrl = value));
-    tCollection.doc(tDocument!.id).update({
+    await tCollection.doc(tDocument!.id).update({
       'TID': tDocument!.id,
       'Photo': imgUrl
     });

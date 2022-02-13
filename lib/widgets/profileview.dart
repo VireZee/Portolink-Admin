@@ -96,7 +96,7 @@ class _ProfileViewState extends State<ProfileView> {
                           : null;
                         }),
                         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
+                          RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))
                         ),
                         padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 12, horizontal: 32))
                       )
