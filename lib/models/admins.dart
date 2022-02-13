@@ -6,5 +6,4 @@ class Admins {
   final String email;
   final String password;
   const Admins(this.photo, this.name, this.email, this.password);
-  List<Object> get props => [photo, name, email, password];
 }

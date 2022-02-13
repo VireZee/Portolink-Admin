@@ -7,5 +7,4 @@ class Requests {
   final String photo;
   final String contact;
   const Requests(this.name, this.color, this.desc, this.photo, this.contact);
-  List<Object> get props => [name, color, desc, photo, contact];
 }

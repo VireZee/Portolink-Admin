@@ -3,7 +3,7 @@ part of 'services.dart';
 class Activity {
   static String dateNow() {
     final DateTime now = DateTime.now();
-    final formatter = DateFormat('d MMMM y, KK:mm:ss.S a');
+    final DateFormat formatter = DateFormat('d MMMM y, KK:mm:ss.S a');
     final String date = formatter.format(now);
     return date;
   }
