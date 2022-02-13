@@ -5,7 +5,7 @@ class Auth {
   static final CollectionReference aCollection = FirebaseFirestore.instance.collection('Admins');
   static String convertToTitleCase(String text) {
     final List<String> words = text.split(' ');
-    final cap = words.map((word) {
+    final Iterable<String> cap = words.map((word) {
       final String first = word.trim().substring(0, 1).toUpperCase();
       final String remain = word.trim().substring(1).toLowerCase();
       return '$first$remain';
@@ -63,7 +63,6 @@ class Auth {
     try {
       final UserCredential uCredential = await auth.signInWithEmailAndPassword(email: email, password: password);
       aid = uCredential.user!.uid;
-      // final String admin = aCollection.doc(aid).get().then((DocumentSnapshot doc) async => doc['Administrator']).toString();
       token = (await FirebaseMessaging.instance.getToken())!;
       await aCollection.doc(aid).update({
         'Is On': true,
@@ -90,7 +89,7 @@ class Auth {
     }
     return msg;
   }
-  static Future<dynamic> getUser() async {
+  static Future<Admins> getUser() async {
     final String aid = auth.currentUser!.uid;
     return await aCollection.doc(aid).get().then((DocumentSnapshot doc) async {
       final Admins admins = Admins(
@@ -145,8 +144,8 @@ class Auth {
   static Future<bool> deleteAccount() async {
     await Firebase.initializeApp();
     final String aid = auth.currentUser!.uid;
-    aCollection.doc(aid).delete();
-    auth.currentUser!.delete();
+    await aCollection.doc(aid).delete();
+    await auth.currentUser!.delete();
     return true;
   }
 }
