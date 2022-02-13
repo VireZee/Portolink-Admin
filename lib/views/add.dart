@@ -65,7 +65,25 @@ class _AddState extends State<Add> {
         centerTitle: true
       ),
       body: Stack(
-        children: [],
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/edit_bg.jpg'),
+                fit: BoxFit.fill
+              )
+            ),
+            child: Scaffold(
+              appBar: AppBar(
+                leading: const BackButton(),
+                backgroundColor: Colors.transparent,
+                toolbarHeight: 75,
+                elevation: 0
+              ),
+              backgroundColor: Colors.transparent,
+            ),
+          )
+        ],
       ),
     );
   }
