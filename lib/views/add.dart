@@ -61,9 +61,14 @@ class _AddState extends State<Add> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: const BackButton(),
+        backgroundColor: Colors.transparent,
+        toolbarHeight: 75,
+        elevation: 0,
         title: const Text('Add a New Template'),
         centerTitle: true
       ),
+      backgroundColor: Colors.transparent,
       body: Stack(
         children: [
           Container(
@@ -72,16 +77,7 @@ class _AddState extends State<Add> {
                 image: AssetImage('assets/images/edit_bg.jpg'),
                 fit: BoxFit.fill
               )
-            ),
-            child: Scaffold(
-              appBar: AppBar(
-                leading: const BackButton(),
-                backgroundColor: Colors.transparent,
-                toolbarHeight: 75,
-                elevation: 0
-              ),
-              backgroundColor: Colors.transparent,
-            ),
+            )
           )
         ],
       ),
