@@ -133,7 +133,6 @@ class _AddState extends State<Add> {
                             ),
                             maxLines: 1
                           ),
-                          const SizedBox(height: 16),
                           const SizedBox(height: 80)
                         ]
                       )
