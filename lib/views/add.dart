@@ -63,7 +63,10 @@ class _AddState extends State<Add> {
       appBar: AppBar(
         title: const Text('Add a New Template'),
         centerTitle: true
-      )
+      ),
+      body: Stack(
+        children: [],
+      ),
     );
   }
 }
