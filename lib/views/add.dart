@@ -139,6 +139,30 @@ class _AddState extends State<Add> {
                             maxLines: 1,
                             textInputAction: TextInputAction.done
                           ),
+                          const SizedBox(height: 16),
+                          imageFile == null
+                          ? Row(
+                            children: [
+                              ElevatedButton.icon(
+                                onPressed: () => chooseFile('gallery'),
+                                icon: const Icon(Icons.image),
+                                label: const Text("Pick Image")
+                              ),
+                              const SizedBox(width: 16),
+                              const Text("File not found.", style: TextStyle(color: Colors.red))
+                            ]
+                          )
+                          : Row(
+                            children: [
+                              ElevatedButton.icon(
+                                onPressed: () => chooseFile('gallery'),
+                                icon: const Icon(Icons.image),
+                                label: const Text("Repick")
+                              ),
+                              const SizedBox(width: 16),
+                              Semantics(child: Image.file(File(imageFile!.path), width: 100))
+                            ]
+                          ),
                           const SizedBox(height: 80),
                           Center(
                             child: SizedBox(
