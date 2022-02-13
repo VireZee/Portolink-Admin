@@ -95,6 +95,7 @@ class _AddState extends State<Add> {
                           ),
                           const SizedBox(height: 8),
                           TextField(
+                            onChanged: (value) => isEmpty(),
                             controller: ctrlName,
                             keyboardType: TextInputType.name,
                             style: const TextStyle(fontSize: 20),
@@ -111,6 +112,7 @@ class _AddState extends State<Add> {
                           ),
                           const SizedBox(height: 8),
                           TextField(
+                            onChanged: (value) => isEmpty(),
                             controller: ctrlDesc,
                             keyboardType: TextInputType.text,
                             style: const TextStyle(fontSize: 20),
@@ -127,6 +129,7 @@ class _AddState extends State<Add> {
                           ),
                           const SizedBox(height: 8),
                           TextField(
+                            onChanged: (value) => isEmpty(),
                             controller: ctrlPrice,
                             keyboardType: TextInputType.number,
                             style: const TextStyle(fontSize: 20),
@@ -142,7 +145,9 @@ class _AddState extends State<Add> {
                               height: 50,
                               width: 250,
                               child: ElevatedButton.icon(
-                                onPressed: () {},
+                                onPressed: isEmpty()
+                                ? () async {}
+                                : null,
                                 style: ButtonStyle(
                                   overlayColor: MaterialStateProperty.resolveWith((states) {
                                     return states.contains(MaterialState.pressed)
