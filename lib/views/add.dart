@@ -11,10 +11,19 @@ class _AddState extends State<Add> {
   final ctrlName = TextEditingController();
   final ctrlDesc = TextEditingController();
   final ctrlPrice = TextEditingController();
+  final ImagePicker imagePicker = ImagePicker();
   XFile? imgFile;
   final ft = FToast();
   bool load = false;
   bool btn = true;
+  Future<dynamic> chooseFile() async {
+    const ImageSource imgSrc = ImageSource.gallery;
+    final selectedImage = await imagePicker.pickImage(
+      source: imgSrc,
+      imageQuality: 100
+    );
+    setState(() => imgFile = selectedImage);
+  }
   bool isEmpty() {
     setState(() {
       if (ctrlName.text != '' && ctrlDesc.text != '' && ctrlPrice.text != '' && imgFile != null) {
@@ -25,17 +34,6 @@ class _AddState extends State<Add> {
       }
     });
     return btn;
-  }
-  final ImagePicker imagePicker = ImagePicker();
-  Future<dynamic> chooseFile() async {
-    const ImageSource imgSrc = ImageSource.gallery;
-    final selectedImage = await imagePicker.pickImage(
-      source: imgSrc,
-      imageQuality: 100
-    );
-    setState(() {
-      imgFile = selectedImage;
-    });
   }
   @override
   void initState() {
