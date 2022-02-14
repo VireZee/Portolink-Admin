@@ -306,9 +306,7 @@ class _SignInState extends State<SignIn> {
                   ),
                   const SizedBox(height: 20),
                   GestureDetector(
-                    onTap: () {
-                      Navigator.pushReplacementNamed(context, '/up');
-                    },
+                    onTap: () => Navigator.pushReplacementNamed(context, '/up'),
                     child: const Text(
                       'Create New Account',
                       style: TextStyle(
