@@ -27,6 +27,16 @@ class TemplatesAuth {
     });
     return true;
   }
+  static Future<Templates> getTemplate() async {
+    return await tCollection.doc(tDocument!.id).get().then((DocumentSnapshot doc) async {
+      final Templates templates = Templates(
+        doc['Name'],
+        doc['Description'],
+        doc['Price']
+      );
+      return templates;
+    });
+  }
   static Future<bool> updateTemplate(Templates templates, XFile imgFile) async {
     await Firebase.initializeApp();
     final String dateNow = Activity.dateNow();
