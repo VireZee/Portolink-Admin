@@ -1,7 +1,6 @@
 part of 'services.dart';
 
 class RequestsAuth {
-  static final FirebaseAuth auth = FirebaseAuth.instance;
   static final CollectionReference rCollection = FirebaseFirestore.instance.collection('Orders');
   static DocumentReference? rDocument;
   static Reference? ref;

@@ -1,7 +1,6 @@
 part of 'services.dart';
 
 class TemplatesAuth {
-  static final FirebaseAuth auth = FirebaseAuth.instance;
   static final CollectionReference tCollection = FirebaseFirestore.instance.collection('Templates');
   static DocumentReference? tDocument;
   static Reference? ref;
