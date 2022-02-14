@@ -15,8 +15,8 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final dark = WidgetsBinding.instance!.window.platformBrightness == Brightness.dark;
-    final initTheme = dark ? BlackWhite.darkTheme() : BlackWhite.lightTheme();
+    final bool dark = WidgetsBinding.instance!.window.platformBrightness == Brightness.dark;
+    final ThemeData initTheme = dark ? BlackWhite.darkTheme() : BlackWhite.lightTheme();
     return ThemeProvider(
       initTheme: initTheme,
       builder: (context, theme) {
