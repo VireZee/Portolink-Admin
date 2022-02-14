@@ -7,8 +7,8 @@ class Splash extends StatefulWidget {
   _SplashState createState() => _SplashState();
 }
 class _SplashState extends State<Splash> {
-  final FirebaseAuth auth = FirebaseAuth.instance;
-  final ft = FToast();
+  final FirebaseAuth auth = Auth.auth;
+  final FToast ft = FToast();
   @override
   void initState() {
     super.initState();
@@ -16,12 +16,12 @@ class _SplashState extends State<Splash> {
     ft.init(context);
   }
   _loadSplash() async {
-    var _duration = const Duration(seconds: 5);
+    const Duration _duration = Duration(seconds: 5);
     return Timer(_duration, checkAuth);
   }
   void checkAuth() async {
     if (auth.currentUser != null) {
-      final ctrlName = auth.currentUser!.displayName;
+      final String? ctrlName = auth.currentUser!.displayName;
       Navigator.pushReplacementNamed(context, '/main');
       ft.showToast(
         child: Activity.showToast(
