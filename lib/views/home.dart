@@ -6,14 +6,48 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 class _HomeState extends State<Home> {
-  final CollectionReference tCollection = TemplatesAuth.tCollection;
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Color(0xFFFF0000),
-      body: Center(
-        child: Text('Hello')
-      )
+    final Brightness brightness = ThemeModelInheritedNotifier.of(context).theme.brightness;
+    return StreamBuilder<QuerySnapshot>(
+      stream: TemplatesAuth.tCollection.snapshots(),
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasError) {
+          return Scaffold(
+            body: Center(
+              child: Text('No Data', style: TextStyle(color: brightness == Brightness.dark ? Colors.white : Colors.black))
+            )
+          );
+        }
+        else if (snapshot.connectionState == ConnectionState.waiting) {
+          return Scaffold(
+            body: Center(
+              child: Activity.loading()
+            )
+          );
+        }
+        else if (snapshot.hasData) {
+          return FutureBuilder(
+            future: TemplatesAuth.getTemplate(),
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                return Scaffold(
+                  body: Center(
+                    child: Text('No Data', style: TextStyle(color: brightness == Brightness.dark ? Colors.white : Colors.black))
+                  )
+                );
+              }
+              else if (snapshot.connectionState == ConnectionState.waiting) {
+                return Scaffold(
+                  body: Center(
+                    child: Activity.loading()
+                  )
+                );
+              }
+            }
+          );
+        }
+      }
     );
   }
 }
