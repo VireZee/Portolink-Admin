@@ -7,12 +7,12 @@ class SignUp extends StatefulWidget {
   _SignUpState createState() => _SignUpState();
 }
 class _SignUpState extends State<SignUp> {
-  final _formKey = GlobalKey<FormState>();
-  final ctrlName =  TextEditingController();
-  final ctrlEmail = TextEditingController();
-  final ctrlPass = TextEditingController();
-  final ctrlCPass = TextEditingController();
-  final ft = FToast();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController ctrlName =  TextEditingController();
+  final TextEditingController ctrlEmail = TextEditingController();
+  final TextEditingController ctrlPass = TextEditingController();
+  final TextEditingController ctrlCPass = TextEditingController();
+  final FToast ft = FToast();
   bool vis = true;
   bool load = false;
   bool btn = true;
@@ -208,8 +208,8 @@ class _SignUpState extends State<SignUp> {
                       ? () async {
                         setState(() => load = true);
                         FocusScope.of(context).requestFocus(FocusNode());
-                        final net = await (Connectivity().checkConnectivity());
-                        final sub = await InternetConnectionChecker().hasConnection;
+                        final ConnectivityResult net = await (Connectivity().checkConnectivity());
+                        final bool sub = await InternetConnectionChecker().hasConnection;
                         if (net == ConnectivityResult.none) {
                           setState(() => load = false);
                           ft.showToast(
