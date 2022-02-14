@@ -44,9 +44,20 @@ class _HomeState extends State<Home> {
                   )
                 );
               }
+              return HomeView();
             }
           );
         }
+        return Stack(
+          children: snapshot.data!.docs.map((DocumentSnapshot doc) {
+            final Templates templates = Templates(
+              doc['Name'],
+              doc['Description'],
+              doc['Price']
+            );
+            return HomeView();
+          }).toList()
+        );
       }
     );
   }
