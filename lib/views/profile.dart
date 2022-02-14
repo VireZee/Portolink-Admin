@@ -6,7 +6,6 @@ class Profile extends StatefulWidget {
   _ProfileState createState() => _ProfileState();
 }
 class _ProfileState extends State<Profile> {
-  final FirebaseAuth auth = Auth.auth;
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
