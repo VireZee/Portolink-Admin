@@ -31,6 +31,31 @@ class _HomeViewState extends State<HomeView> {
                   padding: const EdgeInsets.all(5),
                   child: InkWell(
                     onTap: () {},
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.2),
+                            spreadRadius: 3.0,
+                            blurRadius: 5.0
+                          )
+                        ],
+                        color: Colors.white,
+                      ),
+                      child: Column(
+                        children: [
+                          Text(
+                            Activity.toIDR(templates.price),
+                            style: const TextStyle (fontSize: 14)
+                          ),
+                          Text(
+                            templates.name,
+                            style: const TextStyle (fontSize: 14)
+                          )
+                        ]
+                      )
+                    )
                   )
                 )
               ]
