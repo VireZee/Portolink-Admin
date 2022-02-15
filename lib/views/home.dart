@@ -30,21 +30,21 @@ class _HomeState extends State<Home> {
           return FutureBuilder(
             future: TemplatesAuth.getTemplate(),
             builder: (context, snapshot) {
-              if (snapshot.hasError) {
-                return Scaffold(
-                  body: Center(
-                    child: Text('No Data', style: TextStyle(color: brightness == Brightness.dark ? Colors.white : Colors.black))
-                  )
-                );
-              }
-              else if (snapshot.connectionState == ConnectionState.waiting) {
+              // if (snapshot.hasError) {
+              //   return Scaffold(
+              //     body: Center(
+              //       child: Text('No Data', style: TextStyle(color: brightness == Brightness.dark ? Colors.white : Colors.black))
+              //     )
+              //   );
+              // }
+              if (snapshot.connectionState == ConnectionState.waiting) {
                 return Scaffold(
                   body: Center(
                     child: Activity.loading()
                   )
                 );
               }
-              return HomeView(templates: snapshot.data! as Templates);
+              return HomeView(templates: snapshot.data as Templates);
             }
           );
         }

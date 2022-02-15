@@ -46,11 +46,15 @@ class _HomeViewState extends State<HomeView> {
                       child: Column(
                         children: [
                           Text(
-                            Activity.toIDR(templates.price),
+                            templates.name,
                             style: const TextStyle (fontSize: 14)
                           ),
                           Text(
-                            templates.name,
+                            templates.desc,
+                            style: const TextStyle (fontSize: 14)
+                          ),
+                          Text(
+                            templates.price,
                             style: const TextStyle (fontSize: 14)
                           )
                         ]
