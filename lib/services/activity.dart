@@ -63,7 +63,7 @@ class Activity {
     );
   }
   static String toIDR(String price) {
-    final NumberFormat priceFormat = NumberFormat.currency(locale: 'id', symbol: 'Rp. ');
-    return priceFormat.format(price);
+    final NumberFormat priceFormat = NumberFormat.currency(locale: 'id', symbol: 'Rp. ', decimalDigits: 0);
+    return priceFormat.format(double.parse(price));
   }
 }
