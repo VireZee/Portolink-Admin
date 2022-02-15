@@ -13,33 +13,30 @@ class _HomeViewState extends State<HomeView> {
     final Brightness brightness = ThemeModelInheritedNotifier.of(context).theme.brightness;
     final Size size = MediaQuery.of(context).size;
     return Card(
-      color: Colors.blue[100],
-      elevation: 1,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      margin: const EdgeInsets.all(8),
+      color: brightness == Brightness.dark ? Colors.black : Colors.white,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: Container(
         padding: const EdgeInsets.all(8),
         child: ListTile(
-          title: Text(templates.name, style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+          title: Text(
+            templates.name,
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              color: brightness == Brightness.dark ? Colors.white : Colors.black,
+            ),
             maxLines: 1,
             softWrap: true
           ),
           subtitle: Text(Activity.toIDR(templates.price),
-            style: const TextStyle(fontSize: 13, fontWeight: FontWeight.normal),
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.normal,
+              color: brightness == Brightness.dark ? Colors.white : Colors.black
+            ),
             maxLines: 1,
             softWrap: true
           ),
-          trailing: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              IconButton(
-                icon: const Icon(CupertinoIcons.ellipsis_circle_fill),
-                color: Colors.blue,
-                onPressed: () {}
-              )
-            ]
-          )
         )
       )
     );
