@@ -40,26 +40,23 @@ class _HomeViewState extends State<HomeView> {
                             spreadRadius: 3.0,
                             blurRadius: 5.0
                           )
-                        ],
-                        color: Colors.white,
+                        ]
                       ),
                       child: Column(
                         children: [
                           Text(
-                            templates.name,
-                            style: const TextStyle (fontSize: 14)
-                          ),
-                          Text(
-                            templates.desc,
-                            style: const TextStyle (fontSize: 14)
-                          ),
-                          Text(
                             templates.price,
+                            style: const TextStyle (fontSize: 14)
+                          ),
+                          Text(
+                            templates.name,
                             style: const TextStyle (fontSize: 14)
                           )
                         ]
                       )
-                    )
+                    ),
+                    highlightColor: Colors.blue,
+                    borderRadius: BorderRadius.circular(50),
                   )
                 )
               ]
