@@ -44,7 +44,7 @@ class _HomeState extends State<Home> {
                   )
                 );
               }
-              return HomeView();
+              return HomeView(templates: snapshot.data! as Templates);
             }
           );
         }
@@ -55,7 +55,7 @@ class _HomeState extends State<Home> {
               doc['Description'],
               doc['Price']
             );
-            return HomeView();
+            return HomeView(templates: templates);
           }).toList()
         );
       }

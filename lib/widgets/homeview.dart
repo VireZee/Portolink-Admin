@@ -1,7 +1,8 @@
 part of 'widgets.dart';
 
 class HomeView extends StatefulWidget {
-  const HomeView({Key? key}) : super(key: key);
+  const HomeView({Key? key, required this.templates}) : super(key: key);
+  final Templates templates;
   @override
   _HomeViewState createState() => _HomeViewState();
 }
