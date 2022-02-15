@@ -26,29 +26,11 @@ class _HomeState extends State<Home> {
             )
           );
         }
-        // else if (snapshot.hasData) {
-        //   return FutureBuilder(
-        //     future: TemplatesAuth.getTemplate(),
-        //     builder: (context, snapshot) {
-        //       if (snapshot.hasError) {
-        //         return Scaffold(
-        //           body: Center(
-        //             child: Text('No Data', style: TextStyle(color: brightness == Brightness.dark ? Colors.white : Colors.black))
-        //           )
-        //         );
-        //       }
-        //       if (snapshot.connectionState == ConnectionState.waiting) {
-        //         return Scaffold(
-        //           body: Center(
-        //             child: Activity.loading()
-        //           )
-        //         );
-        //       }
-        //       return HomeView(templates: snapshot.data as Templates);
-        //     }
-        //   );
-        // }
-        return Stack(
+        return GridView.count(
+          physics: const BouncingScrollPhysics(),
+          crossAxisCount: 3,
+          primary: false,
+          childAspectRatio: 0.7,
           children: snapshot.data!.docs.map((DocumentSnapshot doc) {
             final Templates templates = Templates(
               doc['Name'],
