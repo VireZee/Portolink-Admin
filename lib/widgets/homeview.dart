@@ -10,6 +10,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     final Templates templates = widget.templates;
+    final Brightness brightness = ThemeModelInheritedNotifier.of(context).theme.brightness;
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -29,34 +30,43 @@ class _HomeViewState extends State<HomeView> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(5),
-                  child: InkWell(
-                    onTap: () {},
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.2),
-                            spreadRadius: 3.0,
-                            blurRadius: 5.0
-                          )
-                        ]
+                  child: Material(
+                    child: InkWell(
+                      onTap: () {},
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.2),
+                              spreadRadius: 5,
+                              blurRadius: 10
+                            )
+                          ]
+                        ),
+                        child: Column(
+                          children: [
+                            Text(
+                              templates.price,
+                              style: TextStyle (
+                                fontSize: 14,
+                                color: brightness == Brightness.dark ? Colors.white : Colors.black
+                              )
+                            ),
+                            Text(
+                              templates.name,
+                              style: TextStyle (
+                                fontSize: 14,
+                                color: brightness == Brightness.dark ? Colors.white : Colors.black
+                              )
+                            )
+                          ]
+                        )
                       ),
-                      child: Column(
-                        children: [
-                          Text(
-                            templates.price,
-                            style: const TextStyle (fontSize: 14)
-                          ),
-                          Text(
-                            templates.name,
-                            style: const TextStyle (fontSize: 14)
-                          )
-                        ]
-                      )
+                      highlightColor: Colors.blue,
+                      borderRadius: BorderRadius.circular(50)
                     ),
-                    highlightColor: Colors.blue,
-                    borderRadius: BorderRadius.circular(50),
+                    shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(50))
                   )
                 )
               ]
