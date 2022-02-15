@@ -2,6 +2,15 @@ part of 'services.dart';
 
 class TemplatesAuth {
   static final CollectionReference tCollection = FirebaseFirestore.instance.collection('Templates');
+  static String convertToTitleCase(String text) {
+    final List<String> words = text.split(' ');
+    final Iterable<String> cap = words.map((word) {
+      final String first = word.trim().substring(0, 1).toUpperCase();
+      final String remain = word.trim().substring(1).toLowerCase();
+      return '$first$remain';
+    });
+    return cap.join(' ');
+  }
   static DocumentReference? tDocument;
   static Reference? ref;
   static UploadTask? uploadTask;
@@ -12,13 +21,13 @@ class TemplatesAuth {
     tDocument = await tCollection.add({
       'TID': '-',
       'Photo': '-',
-      'Name': templates.name,
+      'Name': convertToTitleCase(templates.name),
       'Description': templates.desc,
       'Price': templates.price,
       'Created': dateNow,
       'Updated': '-'
     });
-    ref = FirebaseStorage.instance.ref().child('Template Photos').child(templates.name + '.jpg');
+    ref = FirebaseStorage.instance.ref().child('Template Photos').child(tDocument!.id + '.jpg');
     uploadTask = ref!.putFile(File(imgFile.path));
     await uploadTask!.whenComplete(() => ref!.getDownloadURL().then((value) => imgUrl = value));
     await tCollection.doc(tDocument!.id).update({
@@ -40,13 +49,13 @@ class TemplatesAuth {
   static Future<bool> updateTemplate(Templates templates, XFile imgFile) async {
     await Firebase.initializeApp();
     final String dateNow = Activity.dateNow();
-    await FirebaseStorage.instance.ref().child('Template Photos').child(templates.name + '.jpg').delete();
-    ref = FirebaseStorage.instance.ref().child('Template Photos').child(templates.name + '.jpg');
+    await FirebaseStorage.instance.ref().child('Template Photos').child(tDocument!.id + '.jpg').delete();
+    ref = FirebaseStorage.instance.ref().child('Template Photos').child(tDocument!.id + '.jpg');
     uploadTask = ref!.putFile(File(imgFile.path));
     await uploadTask!.whenComplete(() => ref!.getDownloadURL().then((value) => imgUrl = value));
     await tCollection.doc(tDocument!.id).update({
       'Photo': imgUrl,
-      'Name': templates.name,
+      'Name': convertToTitleCase(templates.name),
       'Description': templates.desc,
       'Price': templates.price,
       'Updated': dateNow
