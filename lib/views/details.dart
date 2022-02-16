@@ -19,6 +19,7 @@ class _DetailsState extends State<Details> {
         )
       ),
       child: Scaffold(
+        backgroundColor: Colors.transparent,
         appBar: AppBar(
           leading: const BackButton(),
           backgroundColor: Colors.transparent,
