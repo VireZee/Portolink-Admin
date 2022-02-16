@@ -11,6 +11,7 @@ class _DetailsState extends State<Details> {
   @override
   Widget build(BuildContext context) {
     final Templates templates = widget.templates;
+    final Brightness brightness = ThemeModelInheritedNotifier.of(context).theme.brightness;
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
@@ -106,7 +107,43 @@ class _DetailsState extends State<Details> {
                   height: 60,
                   width: 300,
                   child: ElevatedButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          backgroundColor: brightness == Brightness.dark ? Colors.black : Colors.white,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                          title: Text(
+                            'Confirmation',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: brightness == Brightness.dark ? Colors.white : Colors.black)
+                          ),
+                          content: Text(
+                            'Are you sure you want to delete this item?',
+                            style: TextStyle(color: brightness == Brightness.dark ? Colors.white : Colors.black)
+                          ),
+                          actions: [
+                            TextButton(
+                              child: Text(
+                                'Cancel',
+                                style: TextStyle(color: brightness == Brightness.dark ? Colors.white : Colors.black)
+                              ),
+                              onPressed: () => Navigator.of(context).pop()
+                            ),
+                            TextButton(
+                              child: Text(
+                                'Delete',
+                                style: TextStyle(color: brightness == Brightness.dark ? Colors.white : Colors.black)
+                              ),
+                              onPressed: () async {
+                                await TemplatesAuth.deleteTemplate();
+                                Navigator.pushReplacementNamed(context, '/main');
+                              }
+                            )
+                          ]
+                        )
+                      );
+                    },
                     style: ButtonStyle(
                       overlayColor: MaterialStateProperty.resolveWith((states) {
                         return states.contains(MaterialState.pressed)
