@@ -26,20 +26,36 @@ class _HomeState extends State<Home> {
             )
           );
         }
-        return GridView.count(
-          physics: const BouncingScrollPhysics(),
-          crossAxisCount: 3,
-          primary: false,
-          childAspectRatio: 0.7,
-          children: snapshot.data!.docs.map((DocumentSnapshot doc) {
-            final Templates templates = Templates(
-              doc['Photo'],
-              doc['Name'],
-              doc['Description'],
-              doc['Price']
-            );
-            return HomeView(templates: templates);
-          }).toList()
+        return Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/home_bg.jpg'),
+              fit: BoxFit.fill
+            )
+          ),
+          child: Scaffold(
+            backgroundColor: Colors.transparent,
+            appBar: AppBar(
+              toolbarHeight: 60,
+              backgroundColor: Colors.transparent,
+              elevation: 0
+            ),
+            body: GridView.count(
+              physics: const BouncingScrollPhysics(),
+              crossAxisCount: 3,
+              primary: false,
+              childAspectRatio: 0.6,
+              children: snapshot.data!.docs.map((DocumentSnapshot doc) {
+                final Templates templates = Templates(
+                  doc['Photo'],
+                  doc['Name'],
+                  doc['Description'],
+                  doc['Price']
+                );
+                return HomeView(templates: templates);
+              }).toList()
+            )
+          )
         );
       }
     );

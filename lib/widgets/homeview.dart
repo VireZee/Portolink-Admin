@@ -6,41 +6,59 @@ class HomeView extends StatefulWidget {
   @override
   _HomeViewState createState() => _HomeViewState();
 }
+Future<bool> sub() async {
+  final bool sub = await InternetConnectionChecker().hasConnection;
+  if (sub) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
 class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     final Templates templates = widget.templates;
     final Brightness brightness = ThemeModelInheritedNotifier.of(context).theme.brightness;
-    final Size size = MediaQuery.of(context).size;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.all(10),
       child: Material(
         child: InkWell(
           onTap: () {},
           child: Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                BoxShadow(
-                  color: brightness == Brightness.dark ? Colors.black.withOpacity(0.5) : Colors.white.withOpacity(0.5),
-                  spreadRadius: 5,
-                  blurRadius: 2 
-                )
-              ]
+              borderRadius: BorderRadius.circular(10)
             ),
             child: Column(
               children: [
+                const SizedBox(height: 15),
+                Hero(
+                  tag: templates.photo,
+                  child: Stack(
+                    children: [
+                      FadeInImage(
+                        height: 100,
+                        width: 100,
+                        placeholder: const AssetImage('assets/images/no_net_bg.png'),
+                        image: NetworkImage(templates.photo)
+                      )
+                    ]
+                  )
+                ),
+                const SizedBox(height: 15),
                 Text(
                   Activity.toIDR(templates.price),
+                  textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 12,
                     color: brightness == Brightness.dark ? Colors.white : Colors.black
                   )
                 ),
                 Text(
                   templates.name,
+                  textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 12,
                     color: brightness == Brightness.dark ? Colors.white : Colors.black
                   )
                 )
@@ -50,6 +68,7 @@ class _HomeViewState extends State<HomeView> {
           highlightColor: Colors.blue,
           borderRadius: BorderRadius.circular(10)
         ),
+        color: brightness == Brightness.dark ? Colors.black.withOpacity(0.5) : Colors.white.withOpacity(0.5),
         shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(10))
       )
     );
