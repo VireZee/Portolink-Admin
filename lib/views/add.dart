@@ -70,7 +70,7 @@ class _AddState extends State<Add> {
             appBar: AppBar(
               leading: const BackButton(),
               backgroundColor: Colors.transparent,
-              toolbarHeight: 60,
+              toolbarHeight: 75,
               elevation: 0,
               title: const Text('Add a New Template'),
               centerTitle: true

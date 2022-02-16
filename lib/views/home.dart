@@ -36,7 +36,7 @@ class _HomeState extends State<Home> {
           child: Scaffold(
             backgroundColor: Colors.transparent,
             appBar: AppBar(
-              toolbarHeight: 60,
+              toolbarHeight: 75,
               backgroundColor: Colors.transparent,
               elevation: 0
             ),
