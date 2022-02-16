@@ -21,7 +21,7 @@ class _HomeViewState extends State<HomeView> {
     final Templates templates = widget.templates;
     final Brightness brightness = ThemeModelInheritedNotifier.of(context).theme.brightness;
     return Padding(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(5),
       child: Material(
         child: InkWell(
           onTap: () => Navigator.push(
