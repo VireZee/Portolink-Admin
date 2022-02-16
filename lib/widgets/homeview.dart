@@ -34,15 +34,11 @@ class _HomeViewState extends State<HomeView> {
                 const SizedBox(height: 15),
                 Hero(
                   tag: templates.photo,
-                  child: Stack(
-                    children: [
-                      FadeInImage(
-                        height: 100,
-                        width: 100,
-                        placeholder: const AssetImage('assets/images/no_net_bg.png'),
-                        image: NetworkImage(templates.photo)
-                      )
-                    ]
+                  child: FadeInImage(
+                    height: 100,
+                    width: 100,
+                    placeholder: const AssetImage('assets/images/no_net_bg.png'),
+                    image: NetworkImage(templates.photo)
                   )
                 ),
                 const SizedBox(height: 15),

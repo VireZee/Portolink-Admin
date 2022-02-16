@@ -22,8 +22,7 @@ class _ProfileState extends State<Profile> {
             child: Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/images/no_net_bg.png'),
-                  fit: BoxFit.fitWidth
+                  image: AssetImage('assets/images/no_net_bg.png')
                 )
               )
             )
