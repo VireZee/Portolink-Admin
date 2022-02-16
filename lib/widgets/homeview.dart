@@ -24,7 +24,14 @@ class _HomeViewState extends State<HomeView> {
       padding: const EdgeInsets.all(10),
       child: Material(
         child: InkWell(
-          onTap: () {},
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Details(
+                templates: templates,
+              )
+            )
+          ),
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10)
