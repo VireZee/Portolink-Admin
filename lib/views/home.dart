@@ -30,11 +30,10 @@ class _HomeState extends State<Home> {
           physics: const BouncingScrollPhysics(),
           crossAxisCount: 3,
           primary: false,
-          crossAxisSpacing: 15,
-          mainAxisSpacing: 15,
           childAspectRatio: 0.7,
           children: snapshot.data!.docs.map((DocumentSnapshot doc) {
             final Templates templates = Templates(
+              doc['Photo'],
               doc['Name'],
               doc['Description'],
               doc['Price']

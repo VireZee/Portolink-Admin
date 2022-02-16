@@ -20,7 +20,7 @@ class TemplatesAuth {
     final String dateNow = Activity.dateNow();
     tDocument = await tCollection.add({
       'TID': '-',
-      'Photo': '-',
+      'Photo': templates.photo,
       'Name': convertToTitleCase(templates.name),
       'Description': templates.desc,
       'Price': templates.price,
@@ -35,16 +35,6 @@ class TemplatesAuth {
       'Photo': imgUrl
     });
     return true;
-  }
-  static Future<Templates> getTemplate() async {
-    return await tCollection.doc(tDocument!.id).get().then((DocumentSnapshot doc) async {
-      final Templates templates = Templates(
-        doc['Name'],
-        doc['Description'],
-        doc['Price']
-      );
-      return templates;
-    });
   }
   static Future<bool> updateTemplate(Templates templates, XFile imgFile) async {
     await Firebase.initializeApp();

@@ -12,36 +12,8 @@ class _HomeViewState extends State<HomeView> {
     final Templates templates = widget.templates;
     final Brightness brightness = ThemeModelInheritedNotifier.of(context).theme.brightness;
     final Size size = MediaQuery.of(context).size;
-    // return Card(
-    //   color: brightness == Brightness.dark ? Colors.black : Colors.white,
-    //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-    //   child: Container(
-    //     padding: const EdgeInsets.all(8),
-    //     child: ListTile(
-    //       title: Text(
-    //         templates.name,
-    //         style: TextStyle(
-    //           fontSize: 14,
-    //           fontWeight: FontWeight.bold,
-    //           color: brightness == Brightness.dark ? Colors.white : Colors.black,
-    //         ),
-    //         maxLines: 1,
-    //         softWrap: true
-    //       ),
-    //       subtitle: Text(Activity.toIDR(templates.price),
-    //         style: TextStyle(
-    //           fontSize: 12,
-    //           fontWeight: FontWeight.normal,
-    //           color: brightness == Brightness.dark ? Colors.white : Colors.black
-    //         ),
-    //         maxLines: 1,
-    //         softWrap: true
-    //       ),
-    //     )
-    //   )
-    // );
     return Padding(
-      padding: const EdgeInsets.all(5),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Material(
         child: InkWell(
           onTap: () {},
@@ -50,9 +22,9 @@ class _HomeViewState extends State<HomeView> {
               borderRadius: BorderRadius.circular(10),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.grey.withOpacity(0.2),
+                  color: brightness == Brightness.dark ? Colors.black.withOpacity(0.5) : Colors.white.withOpacity(0.5),
                   spreadRadius: 5,
-                  blurRadius: 2
+                  blurRadius: 2 
                 )
               ]
             ),
