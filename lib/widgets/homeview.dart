@@ -41,7 +41,7 @@ class _HomeViewState extends State<HomeView> {
                     image: NetworkImage(templates.photo)
                   )
                 ),
-                const SizedBox(height: 15),
+                const SizedBox(height: 30),
                 Text(
                   Activity.toIDR(templates.price),
                   textAlign: TextAlign.center,
