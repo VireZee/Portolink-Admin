@@ -318,7 +318,7 @@ class _AddState extends State<Add> {
                                       'Publish Template',
                                       style: TextStyle(fontSize: 20)
                                     ),
-                                    Spacer(flex: 2)
+                                    Spacer()
                                   ]
                                 )
                               )
