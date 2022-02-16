@@ -137,7 +137,7 @@ class _DetailsState extends State<Details> {
                               ),
                               onPressed: () async {
                                 await TemplatesAuth.deleteTemplate(templates.tid);
-                                Navigator.pushReplacementNamed(context, '/main');
+                                Navigator.pushNamedAndRemoveUntil(context, '/main', (Route<dynamic> route) => false);
                               }
                             )
                           ]
