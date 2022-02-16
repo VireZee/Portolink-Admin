@@ -262,6 +262,7 @@ class _AddState extends State<Add> {
                                     if (_formKey.currentState!.validate()) {
                                       final Templates templates = Templates(
                                         '',
+                                        '',
                                         ctrlName.text,
                                         ctrlDesc.text,
                                         ctrlPrice.text

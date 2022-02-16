@@ -19,7 +19,7 @@ class TemplatesAuth {
     await Firebase.initializeApp();
     final String dateNow = Activity.dateNow();
     tDocument = await tCollection.add({
-      'TID': '-',
+      'TID': templates.tid,
       'Photo': templates.photo,
       'Name': convertToTitleCase(templates.name),
       'Description': templates.desc,
@@ -52,10 +52,10 @@ class TemplatesAuth {
     });
     return true;
   }
-  static Future<bool> deleteTemplate() async {
+  static Future<bool> deleteTemplate(tid) async {
     await Firebase.initializeApp();
-    await tCollection.doc(tDocument!.id).delete();
-    await FirebaseStorage.instance.ref().child('Template Photos').child(tDocument!.id + '.jpg').delete();
+    await tCollection.doc(tid).delete();
+    await FirebaseStorage.instance.ref().child('Template Photos').child(tid + '.jpg').delete();
     return true;
   }
 }

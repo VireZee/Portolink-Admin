@@ -47,6 +47,7 @@ class _HomeState extends State<Home> {
               childAspectRatio: 0.6,
               children: snapshot.data!.docs.map((DocumentSnapshot doc) {
                 final Templates templates = Templates(
+                  doc['TID'],
                   doc['Photo'],
                   doc['Name'],
                   doc['Description'],

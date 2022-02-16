@@ -136,7 +136,7 @@ class _DetailsState extends State<Details> {
                                 style: TextStyle(color: brightness == Brightness.dark ? Colors.white : Colors.black)
                               ),
                               onPressed: () async {
-                                await TemplatesAuth.deleteTemplate();
+                                await TemplatesAuth.deleteTemplate(templates.tid);
                                 Navigator.pushReplacementNamed(context, '/main');
                               }
                             )
