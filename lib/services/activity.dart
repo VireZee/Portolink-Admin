@@ -3,7 +3,7 @@ part of 'services.dart';
 class Activity {
   static String dateNow() {
     final DateTime now = DateTime.now();
-    final formatter = DateFormat('d MMMM y, KK:mm:ss.S a');
+    final DateFormat formatter = DateFormat('d MMMM y, KK:mm:ss.S a');
     final String date = formatter.format(now);
     return date;
   }
@@ -33,7 +33,7 @@ class Activity {
       textColor: Colors.white,
       fontSize: 14
     );
-    DO NOT DELETE!!!!! */
+    DO NOT DELETE!! */
   }
   static Container check() {
     return Container(
@@ -63,7 +63,7 @@ class Activity {
     );
   }
   static String toIDR(String price) {
-    final priceFormat = NumberFormat.currency(locale: 'ID');
+    final NumberFormat priceFormat = NumberFormat.currency(locale: 'id', symbol: 'Rp. ', decimalDigits: 0);
     return priceFormat.format(double.parse(price));
   }
 }

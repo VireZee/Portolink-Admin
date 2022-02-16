@@ -7,10 +7,10 @@ class SignIn extends StatefulWidget {
   _SignInState createState() => _SignInState();
 }
 class _SignInState extends State<SignIn> {
-  final _formKey = GlobalKey<FormState>();
-  final ctrlEmail = TextEditingController();
-  final ctrlPass = TextEditingController();
-  final ft = FToast();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController ctrlEmail = TextEditingController();
+  final TextEditingController ctrlPass = TextEditingController();
+  final FToast ft = FToast();
   bool vis = true;
   bool load = false;
   bool btn = true;
@@ -161,8 +161,8 @@ class _SignInState extends State<SignIn> {
                       ? () async {
                         setState(() => load = true);
                         FocusScope.of(context).requestFocus(FocusNode());
-                        final net = await (Connectivity().checkConnectivity());
-                        final sub = await InternetConnectionChecker().hasConnection;
+                        final ConnectivityResult net = await (Connectivity().checkConnectivity());
+                        final bool sub = await InternetConnectionChecker().hasConnection;
                         if (net == ConnectivityResult.none) {
                           setState(() => load = false);
                           ft.showToast(
@@ -306,9 +306,7 @@ class _SignInState extends State<SignIn> {
                   ),
                   const SizedBox(height: 20),
                   GestureDetector(
-                    onTap: () {
-                      Navigator.pushReplacementNamed(context, '/up');
-                    },
+                    onTap: () => Navigator.pushReplacementNamed(context, '/up'),
                     child: const Text(
                       'Create New Account',
                       style: TextStyle(

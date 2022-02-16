@@ -5,7 +5,7 @@ class Auth {
   static final CollectionReference aCollection = FirebaseFirestore.instance.collection('Admins');
   static String convertToTitleCase(String text) {
     final List<String> words = text.split(' ');
-    final cap = words.map((word) {
+    final Iterable<String> cap = words.map((word) {
       final String first = word.trim().substring(0, 1).toUpperCase();
       final String remain = word.trim().substring(1).toLowerCase();
       return '$first$remain';
@@ -22,6 +22,8 @@ class Auth {
       final UserCredential aCredential = await auth.createUserWithEmailAndPassword(email: admins.email, password: admins.password);
       aid = aCredential.user!.uid;
       token = (await FirebaseMessaging.instance.getToken())!;
+      await auth.currentUser!.updatePhotoURL(admins.photo);
+      await auth.currentUser!.updateDisplayName(convertToTitleCase(admins.name));
       await aCollection.doc(aid).set({
         'AID': aid,
         'Photo': '-',
@@ -29,14 +31,11 @@ class Auth {
         'Email': admins.email.replaceAll(' ', '').toLowerCase(),
         'Password': sha512.convert(utf8.encode(sha512.convert(utf8.encode(admins.password)).toString())).toString(),
         'Token': token,
-        'Administrator': true,
         'Created': dateNow,
         'Updated': '-',
         'Entered': '-',
         'Left': '-'
       }).then((value) => msg = 'Signed');
-      await auth.currentUser!.updatePhotoURL(admins.photo);
-      await auth.currentUser!.updateDisplayName(convertToTitleCase(admins.name));
       return msg;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
@@ -63,7 +62,6 @@ class Auth {
     try {
       final UserCredential uCredential = await auth.signInWithEmailAndPassword(email: email, password: password);
       aid = uCredential.user!.uid;
-      // final String admin = aCollection.doc(aid).get().then((DocumentSnapshot doc) async => doc['Administrator']).toString();
       token = (await FirebaseMessaging.instance.getToken())!;
       await aCollection.doc(aid).update({
         'Is On': true,
@@ -90,7 +88,7 @@ class Auth {
     }
     return msg;
   }
-  static Future<dynamic> getUser() async {
+  static Future<Admins> getUser() async {
     final String aid = auth.currentUser!.uid;
     return await aCollection.doc(aid).get().then((DocumentSnapshot doc) async {
       final Admins admins = Admins(

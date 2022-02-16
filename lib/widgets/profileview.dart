@@ -7,9 +7,9 @@ class ProfileView extends StatefulWidget {
   _ProfileViewState createState() => _ProfileViewState();
 }
 class _ProfileViewState extends State<ProfileView> {
-  final ft = FToast();
-  static bool load = false;
-  static bool c = true;
+  final FToast ft = FToast();
+  bool load = false;
+  bool c = true;
   @override
   void initState() {
     super.initState();
@@ -77,17 +77,15 @@ class _ProfileViewState extends State<ProfileView> {
                     ),
                     const SizedBox(height: 24),
                     ElevatedButton(
-                      onPressed: () async {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Update(
-                              name: admins.name,
-                              email: admins.email
-                            )
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Update(
+                            name: admins.name,
+                            email: admins.email
                           )
-                        );
-                      },
+                        )
+                      ),
                       child: const Text('Edit Profile'),
                       style: ButtonStyle(
                         overlayColor: MaterialStateProperty.resolveWith((states) {
@@ -106,8 +104,8 @@ class _ProfileViewState extends State<ProfileView> {
                       child: InkWell(
                         onTap: () async {
                           setState(() => load = true);
-                          final net = await (Connectivity().checkConnectivity());
-                          final sub = await InternetConnectionChecker().hasConnection;
+                          final ConnectivityResult net = await (Connectivity().checkConnectivity());
+                          final bool sub = await InternetConnectionChecker().hasConnection;
                           if (net == ConnectivityResult.none) {
                             setState(() => load = false);
                             ft.showToast(
@@ -164,8 +162,8 @@ class _ProfileViewState extends State<ProfileView> {
                       child: InkWell(
                         onTap: () async {
                           setState(() => load = true);
-                          final net = await (Connectivity().checkConnectivity());
-                          final sub = await InternetConnectionChecker().hasConnection;
+                          final ConnectivityResult net = await (Connectivity().checkConnectivity());
+                          final bool sub = await InternetConnectionChecker().hasConnection;
                           if (net == ConnectivityResult.none) {
                             setState(() => load = false);
                             ft.showToast(

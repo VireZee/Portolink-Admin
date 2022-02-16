@@ -7,7 +7,7 @@ class MainMenu extends StatefulWidget {
   _MainMenuState createState() => _MainMenuState();
 }
 class _MainMenuState extends State<MainMenu> {
-  static int _selectedIntex = 3;
+  static int _selectedIntex = 0;
   final List<Widget> _widgetOptions = <Widget>[
     const Home(),
     const Chat(),

@@ -10,4 +10,5 @@ import 'package:portolink_admin/services/services.dart';
 import 'package:portolink_admin/shared/shared.dart';
 import 'package:portolink_admin/views/views.dart';
 
+part 'homeview.dart';
 part 'profileview.dart';

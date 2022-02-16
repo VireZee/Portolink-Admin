@@ -6,14 +6,58 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 class _HomeState extends State<Home> {
-  final CollectionReference tCollection = TemplatesAuth.tCollection;
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Color(0xFFFF0000),
-      body: Center(
-        child: Text('Hello')
-      )
+    final Brightness brightness = ThemeModelInheritedNotifier.of(context).theme.brightness;
+    return StreamBuilder<QuerySnapshot>(
+      stream: TemplatesAuth.tCollection.snapshots(),
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasError) {
+          return Scaffold(
+            body: Center(
+              child: Text('No Data', style: TextStyle(color: brightness == Brightness.dark ? Colors.white : Colors.black))
+            )
+          );
+        }
+        else if (snapshot.connectionState == ConnectionState.waiting) {
+          return Scaffold(
+            body: Center(
+              child: Activity.loading()
+            )
+          );
+        }
+        return Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/home_bg.jpg'),
+              fit: BoxFit.fill
+            )
+          ),
+          child: Scaffold(
+            backgroundColor: Colors.transparent,
+            appBar: AppBar(
+              toolbarHeight: 75,
+              backgroundColor: Colors.transparent,
+              elevation: 0
+            ),
+            body: GridView.count(
+              physics: const BouncingScrollPhysics(),
+              crossAxisCount: 3,
+              primary: false,
+              childAspectRatio: 0.6,
+              children: snapshot.data!.docs.map((DocumentSnapshot doc) {
+                final Templates templates = Templates(
+                  doc['Photo'],
+                  doc['Name'],
+                  doc['Description'],
+                  doc['Price']
+                );
+                return HomeView(templates: templates);
+              }).toList()
+            )
+          )
+        );
+      }
     );
   }
 }

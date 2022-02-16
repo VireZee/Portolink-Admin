@@ -7,18 +7,18 @@ class Add extends StatefulWidget {
   _AddState createState() => _AddState();
 }
 class _AddState extends State<Add> {
-  final _formKey = GlobalKey<FormState>();
-  final ctrlName = TextEditingController();
-  final ctrlDesc = TextEditingController();
-  final ctrlPrice = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController ctrlName = TextEditingController();
+  final TextEditingController ctrlDesc = TextEditingController();
+  final TextEditingController ctrlPrice = TextEditingController();
   final ImagePicker imagePicker = ImagePicker();
   XFile? imgFile;
-  final ft = FToast();
+  final FToast ft = FToast();
   bool load = false;
   bool btn = true;
   Future<dynamic> chooseFile() async {
     const ImageSource imgSrc = ImageSource.gallery;
-    final selectedImage = await imagePicker.pickImage(
+    final XFile? selectedImage = await imagePicker.pickImage(
       source: imgSrc,
       imageQuality: 100
     );
@@ -70,7 +70,7 @@ class _AddState extends State<Add> {
             appBar: AppBar(
               leading: const BackButton(),
               backgroundColor: Colors.transparent,
-              toolbarHeight: 60,
+              toolbarHeight: 75,
               elevation: 0,
               title: const Text('Add a New Template'),
               centerTitle: true
@@ -201,8 +201,8 @@ class _AddState extends State<Add> {
                                 ? () async {
                                   setState(() => load = true);
                                   FocusScope.of(context).requestFocus(FocusNode());
-                                  final net = await (Connectivity().checkConnectivity());
-                                  final sub = await InternetConnectionChecker().hasConnection;
+                                  final ConnectivityResult net = await (Connectivity().checkConnectivity());
+                                  final bool sub = await InternetConnectionChecker().hasConnection;
                                   if (net == ConnectivityResult.none) {
                                     setState(() => load = false);
                                     ft.showToast(
@@ -261,6 +261,7 @@ class _AddState extends State<Add> {
                                   else if (sub) {
                                     if (_formKey.currentState!.validate()) {
                                       final Templates templates = Templates(
+                                        '',
                                         ctrlName.text,
                                         ctrlDesc.text,
                                         ctrlPrice.text

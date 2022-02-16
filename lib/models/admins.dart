@@ -5,16 +5,5 @@ class Admins {
   final String name;
   final String email;
   final String password;
-  const Admins(
-    this.photo,
-    this.name,
-    this.email,
-    this.password
-  );
-  List<Object> get props => [
-    photo,
-    name,
-    email,
-    password
-  ];
-} 
+  const Admins(this.photo, this.name, this.email, this.password);
+}
