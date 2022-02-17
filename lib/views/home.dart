@@ -12,7 +12,14 @@ class _HomeState extends State<Home> {
     return StreamBuilder<QuerySnapshot>(
       stream: TemplatesAuth.tCollection.snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-        if (snapshot.hasError) {
+        if (Auth.auth.currentUser == null) {
+          return Scaffold(
+            body: Center(
+              child: Text('No Data', style: TextStyle(color: brightness == Brightness.dark ? Colors.white : Colors.black))
+            )
+          );
+        }
+        else if (snapshot.hasError) {
           return Scaffold(
             body: Center(
               child: Text('No Data', style: TextStyle(color: brightness == Brightness.dark ? Colors.white : Colors.black))
@@ -40,6 +47,7 @@ class _HomeState extends State<Home> {
               backgroundColor: Colors.transparent,
               elevation: 0,
               actions: [
+                const Spacer(flex: 25),
                 IconButton(
                   onPressed: () {
                     showSearch(
@@ -48,7 +56,8 @@ class _HomeState extends State<Home> {
                     );
                   },
                   icon: const Icon(Icons.search)
-                )
+                ),
+                const Spacer()
               ]
             ),
             body: GridView.count(
