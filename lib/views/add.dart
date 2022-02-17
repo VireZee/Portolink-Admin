@@ -144,7 +144,7 @@ class _AddState extends State<Add> {
                               ElevatedButton.icon(
                                 onPressed: () => chooseFile(),
                                 icon: const Icon(Icons.image),
-                                label: const Text("Pick Image"),
+                                label: const Text('Pick Image'),
                                 style: ButtonStyle(
                                   overlayColor: MaterialStateProperty.resolveWith((states) {
                                     return states.contains(MaterialState.pressed)
@@ -162,7 +162,7 @@ class _AddState extends State<Add> {
                                 )
                               ),
                               const SizedBox(width: 16),
-                              const Text("File not found.", style: TextStyle(color: Colors.red))
+                              const Text('File not found.', style: TextStyle(color: Colors.red))
                             ]
                           )
                           : Row(
@@ -170,7 +170,7 @@ class _AddState extends State<Add> {
                               ElevatedButton.icon(
                                 onPressed: () => chooseFile(),
                                 icon: const Icon(Icons.image),
-                                label: const Text("Repick"),
+                                label: const Text('Repick'),
                                 style: ButtonStyle(
                                   overlayColor: MaterialStateProperty.resolveWith((states) {
                                     return states.contains(MaterialState.pressed)

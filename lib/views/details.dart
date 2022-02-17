@@ -76,7 +76,17 @@ class _DetailsState extends State<Details> {
                   height: 60,
                   width: 300,
                   child: ElevatedButton.icon(
-                    onPressed: () {},
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Edit(
+                          photo: templates.photo,
+                          name: templates.name,
+                          desc: templates.desc,
+                          price: templates.price
+                        )
+                      )
+                    ),
                     style: ButtonStyle(
                       overlayColor: MaterialStateProperty.resolveWith((states) {
                         return states.contains(MaterialState.pressed)
