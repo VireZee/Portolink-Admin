@@ -51,10 +51,10 @@ class TemplatesAuth {
     });
     return true;
   }
-  static Future<bool> updateTemplateNonPict(String id, Templates templates) async {
+  static Future<bool> updateTemplateNonPict(String tid, Templates templates) async {
     await Firebase.initializeApp();
     final String dateNow = Activity.dateNow();
-    await tCollection.doc(templates.tid).update({
+    await tCollection.doc(tid).update({
       'Name': convertToTitleCase(templates.name),
       'Description': templates.desc,
       'Price': templates.price,
