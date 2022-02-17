@@ -46,22 +46,20 @@ class _HomeState extends State<Home> {
               toolbarHeight: 75,
               backgroundColor: Colors.transparent,
               elevation: 0,
-              actions: [
-                TextField(
-                  keyboardType: TextInputType.name,
-                  style: const TextStyle(
-                    fontFamily: 'Roboto',
-                    fontSize: 25
-                  ),
-                  decoration: InputDecoration(
-                    hintText: 'Search',
-                    prefixIcon: Icon(Icons.search),
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))
-                  ),
-                  maxLines: 1,
-                  textInputAction: TextInputAction.done
+              title: TextField(
+                keyboardType: TextInputType.name,
+                style: const TextStyle(
+                  fontFamily: 'Roboto',
+                  fontSize: 15
                 ),
-              ]
+                decoration: InputDecoration(
+                  hintText: 'Search',
+                  prefixIcon: const Icon(Icons.search),
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))
+                ),
+                maxLines: 1,
+                textInputAction: TextInputAction.done
+              )
             ),
             body: GridView.count(
               physics: const BouncingScrollPhysics(),
