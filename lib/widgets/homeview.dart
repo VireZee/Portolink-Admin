@@ -46,6 +46,7 @@ class _HomeViewState extends State<HomeView> {
                     color: brightness == Brightness.dark ? Colors.white : Colors.black
                   )
                 ),
+                const SizedBox(height: 20),
                 Text(
                   templates.name,
                   textAlign: TextAlign.center,
