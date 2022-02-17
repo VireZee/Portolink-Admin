@@ -21,6 +21,7 @@ class _MainMenuState extends State<MainMenu> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
           Center(child: _widgetOptions.elementAt(_selectedIntex)),
