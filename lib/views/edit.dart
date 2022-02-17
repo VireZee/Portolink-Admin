@@ -29,7 +29,7 @@ class _EditState extends State<Edit> {
   }
   bool isEmpty() {
     setState(() {
-      if (ctrlName.text != '' && ctrlDesc.text != '' && ctrlPrice.text != '' && imgFile != null) {
+      if (ctrlName.text != '' && ctrlDesc.text != '' && ctrlPrice.text != '') {
         btn = true;
       }
       else {
@@ -57,9 +57,7 @@ class _EditState extends State<Edit> {
     ctrlName.clear();
     ctrlDesc.clear();
     ctrlPrice.clear();
-    setState(() {
-      imgFile = null;
-    });
+    setState(() => imgFile = null);
   }
   @override
   Widget build(BuildContext context) {
@@ -253,17 +251,6 @@ class _EditState extends State<Edit> {
                                       fadeDuration: 200
                                     );
                                   }
-                                  else if (imgFile == null) {
-                                    setState(() => load = false);
-                                    ft.showToast(
-                                      child: Activity.showToast(
-                                        'Pick an image',
-                                        const Color(0xFFFF0000)
-                                      ),
-                                      toastDuration: const Duration(seconds: 1),
-                                      fadeDuration: 200
-                                    );
-                                  }
                                   else if (sub) {
                                     if (_formKey.currentState!.validate()) {
                                       final Templates templates = Templates(
@@ -273,7 +260,7 @@ class _EditState extends State<Edit> {
                                         ctrlDesc.text,
                                         ctrlPrice.text
                                       );
-                                      await TemplatesAuth.addTemplate(templates, imgFile!).then((value) {
+                                      await TemplatesAuth.updateTemplate(templates, imgFile).then((value) {
                                         if (value == true) {
                                           setState(() => load = false);
                                           ft.showToast(
@@ -339,7 +326,10 @@ class _EditState extends State<Edit> {
               ]
             )
           )
-        )
+        ),
+        load == true
+        ? Activity.loading()
+        : Container()
       ]
     );
   }

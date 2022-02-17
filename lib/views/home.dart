@@ -47,6 +47,7 @@ class _HomeState extends State<Home> {
               backgroundColor: Colors.transparent,
               elevation: 0,
               title: TextField(
+                textCapitalization: TextCapitalization.words,
                 keyboardType: TextInputType.name,
                 style: const TextStyle(
                   fontFamily: 'Roboto',

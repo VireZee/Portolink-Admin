@@ -51,9 +51,7 @@ class _AddState extends State<Add> {
     ctrlName.clear();
     ctrlDesc.clear();
     ctrlPrice.clear();
-    setState(() {
-      imgFile = null;
-    });
+    setState(() => imgFile = null);
   }
   @override
   Widget build(BuildContext context) {
