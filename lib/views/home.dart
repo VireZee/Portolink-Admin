@@ -75,6 +75,7 @@ class _HomeState extends State<Home> {
                   doc['Description'],
                   doc['Price']
                 );
+                TemplatesAuth.tCollection.orderBy('Name');
                 return HomeView(templates: templates);
               }).toList()
             )

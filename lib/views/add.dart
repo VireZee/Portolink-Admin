@@ -280,6 +280,7 @@ class _AddState extends State<Add> {
                                         }
                                       });
                                     }
+                                    Navigator.pushNamedAndRemoveUntil(context, '/main', (Route<dynamic> route) => false);
                                   }
                                   else {
                                     setState(() => load = false);

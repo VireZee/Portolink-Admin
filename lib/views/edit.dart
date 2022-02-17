@@ -1,7 +1,8 @@
 part of 'views.dart';
 
 class Edit extends StatefulWidget {
-  const Edit({Key? key, required this.photo, required this.name, required this.desc, required this.price}) : super(key: key);
+  const Edit({Key? key, required this.photo, required this.name, required this.desc, required this.price, required this.tid}) : super(key: key);
+  final String tid;
   final String photo;
   final String name;
   final String desc;
@@ -261,7 +262,7 @@ class _EditState extends State<Edit> {
                                           ctrlDesc.text,
                                           ctrlPrice.text
                                         );
-                                        await TemplatesAuth.updateTemplate(templates, imgFile!).then((value) {
+                                        await TemplatesAuth.updateTemplate(widget.tid, templates, imgFile!).then((value) {
                                           if (value == true) {
                                             setState(() => load = false);
                                             ft.showToast(
@@ -286,7 +287,7 @@ class _EditState extends State<Edit> {
                                           ctrlDesc.text,
                                           ctrlPrice.text
                                         );
-                                        await TemplatesAuth.updateTemplateNonPict(templates).then((value) {
+                                        await TemplatesAuth.updateTemplateNonPict(widget.tid, templates).then((value) {
                                           if (value == true) {
                                             setState(() => load = false);
                                             ft.showToast(
@@ -302,6 +303,7 @@ class _EditState extends State<Edit> {
                                         });
                                       }
                                     }
+                                    Navigator.pushNamedAndRemoveUntil(context, '/main', (Route<dynamic> route) => false);
                                   }
                                   else {
                                     setState(() => load = false);

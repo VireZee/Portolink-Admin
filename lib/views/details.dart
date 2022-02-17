@@ -80,6 +80,7 @@ class _DetailsState extends State<Details> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => Edit(
+                          tid: templates.tid,
                           photo: templates.photo,
                           name: templates.name,
                           desc: templates.desc,
