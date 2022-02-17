@@ -47,17 +47,20 @@ class _HomeState extends State<Home> {
               backgroundColor: Colors.transparent,
               elevation: 0,
               actions: [
-                const Spacer(flex: 25),
-                IconButton(
-                  onPressed: () {
-                    showSearch(
-                      context: context,
-                      delegate: Search()
-                    );
-                  },
-                  icon: const Icon(Icons.search)
+                TextField(
+                  keyboardType: TextInputType.name,
+                  style: const TextStyle(
+                    fontFamily: 'Roboto',
+                    fontSize: 25
+                  ),
+                  decoration: InputDecoration(
+                    hintText: 'Search',
+                    prefixIcon: Icon(Icons.search),
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))
+                  ),
+                  maxLines: 1,
+                  textInputAction: TextInputAction.done
                 ),
-                const Spacer()
               ]
             ),
             body: GridView.count(
@@ -80,41 +83,5 @@ class _HomeState extends State<Home> {
         );
       }
     );
-  }
-}
-class Search extends SearchDelegate {
-  @override
-  List<Widget>? buildActions(BuildContext context) {
-   IconButton(
-      onPressed: () {
-        if (query.isEmpty) {
-          close(context, null);
-        }
-        else {
-          query = '';
-        }
-      },
-      icon: const Icon(Icons.cancel)
-    );
-   return null;
-  }
-  @override
-  Widget? buildLeading(BuildContext context) {
-    IconButton(
-      onPressed: () => close(context, null),
-      icon: const Icon(Icons.arrow_back)
-    );
-   return null;
-  }
-  @override
-  Widget buildResults(BuildContext context) {
-    // TODO: implement buildResults
-    throw UnimplementedError();
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    // TODO: implement buildSuggestions
-    throw UnimplementedError();
   }
 }
