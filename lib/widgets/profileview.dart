@@ -86,7 +86,7 @@ class _ProfileViewState extends State<ProfileView> {
                           )
                         )
                       ),
-                      child: const Text('Edit Profile'),
+                      child: const Text('Update Profile'),
                       style: ButtonStyle(
                         overlayColor: MaterialStateProperty.resolveWith((states) {
                           return states.contains(MaterialState.pressed)

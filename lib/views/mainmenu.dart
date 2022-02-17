@@ -21,6 +21,7 @@ class _MainMenuState extends State<MainMenu> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
           Center(child: _widgetOptions.elementAt(_selectedIntex)),
@@ -40,8 +41,8 @@ class _MainMenuState extends State<MainMenu> {
                     heightFactor: 0.6,
                     child: FloatingActionButton(
                       backgroundColor: Colors.blue,
-                      child: const Icon(Icons.add),
-                      elevation: 0.1,
+                      child: const Icon(Icons.add, size: 40),
+                      elevation: 0,
                       onPressed: () {
                         Navigator.pushNamed(context, '/add');
                       }

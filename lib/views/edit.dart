@@ -1,12 +1,16 @@
 part of 'views.dart';
 
-class Add extends StatefulWidget {
-  const Add({Key? key}) : super(key: key);
-  static const String routeName = '/add';
+class Edit extends StatefulWidget {
+  const Edit({Key? key, required this.tid, required this.photo, required this.name, required this.desc, required this.price}) : super(key: key);
+  final String tid;
+  final String photo;
+  final String name;
+  final String desc;
+  final String price;
   @override
-  _AddState createState() => _AddState();
+  _EditState createState() => _EditState();
 }
-class _AddState extends State<Add> {
+class _EditState extends State<Edit> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController ctrlName = TextEditingController();
   final TextEditingController ctrlDesc = TextEditingController();
@@ -26,7 +30,7 @@ class _AddState extends State<Add> {
   }
   bool isEmpty() {
     setState(() {
-      if (ctrlName.text != '' && ctrlDesc.text != '' && ctrlPrice.text != '' && imgFile != null) {
+      if (ctrlName.text != '' && ctrlDesc.text != '' && ctrlPrice.text != '') {
         btn = true;
       }
       else {
@@ -37,6 +41,9 @@ class _AddState extends State<Add> {
   }
   @override
   void initState() {
+    ctrlName.text = widget.name;
+    ctrlDesc.text = widget.desc;
+    ctrlPrice.text = widget.price;
     super.initState();
     ft.init(context);
   }
@@ -70,7 +77,7 @@ class _AddState extends State<Add> {
               backgroundColor: Colors.transparent,
               toolbarHeight: 75,
               elevation: 0,
-              title: const Text('Add a New Template'),
+              title: const Text('Edit Template'),
               centerTitle: true
             ),
             backgroundColor: Colors.transparent,
@@ -142,7 +149,7 @@ class _AddState extends State<Add> {
                               ElevatedButton.icon(
                                 onPressed: () => chooseFile(),
                                 icon: const Icon(Icons.image),
-                                label: const Text('Pick Image'),
+                                label: const Text('Repick'),
                                 style: ButtonStyle(
                                   overlayColor: MaterialStateProperty.resolveWith((states) {
                                     return states.contains(MaterialState.pressed)
@@ -160,7 +167,7 @@ class _AddState extends State<Add> {
                                 )
                               ),
                               const SizedBox(width: 16),
-                              const Text('File not found.', style: TextStyle(color: Colors.red))
+                              Image.network(widget.photo, width: 100)
                             ]
                           )
                           : Row(
@@ -245,40 +252,56 @@ class _AddState extends State<Add> {
                                       fadeDuration: 200
                                     );
                                   }
-                                  else if (imgFile == null) {
-                                    setState(() => load = false);
-                                    ft.showToast(
-                                      child: Activity.showToast(
-                                        'Pick an image',
-                                        const Color(0xFFFF0000)
-                                      ),
-                                      toastDuration: const Duration(seconds: 1),
-                                      fadeDuration: 200
-                                    );
-                                  }
                                   else if (sub) {
-                                    if (_formKey.currentState!.validate()) {
-                                      final Templates templates = Templates(
-                                        '',
-                                        '',
-                                        ctrlName.text,
-                                        ctrlDesc.text,
-                                        ctrlPrice.text
-                                      );
-                                      await TemplatesAuth.addTemplate(templates, imgFile!).then((value) {
-                                        if (value == true) {
-                                          setState(() => load = false);
-                                          ft.showToast(
-                                            child: Activity.showToast(
-                                              'Published',
-                                              Colors.blue
-                                            ),
-                                            toastDuration: const Duration(seconds: 1),
-                                            fadeDuration: 200
-                                          );
-                                          clearForm();
-                                        }
-                                      });
+                                    if (imgFile != null) {
+                                      if (_formKey.currentState!.validate()) {
+                                        final Templates templates = Templates(
+                                          '',
+                                          '',
+                                          ctrlName.text,
+                                          ctrlDesc.text,
+                                          ctrlPrice.text
+                                        );
+                                        await TemplatesAuth.updateTemplate(widget.tid, templates, imgFile!).then((value) {
+                                          if (value == true) {
+                                            setState(() => load = false);
+                                            ft.showToast(
+                                              child: Activity.showToast(
+                                                'Published',
+                                                Colors.blue
+                                              ),
+                                              toastDuration: const Duration(seconds: 1),
+                                              fadeDuration: 200
+                                            );
+                                            clearForm();
+                                          }
+                                        });
+                                      }
+                                    }
+                                    else if (imgFile == null) {
+                                      if (_formKey.currentState!.validate()) {
+                                        final Templates templates = Templates(
+                                          '',
+                                          '',
+                                          ctrlName.text,
+                                          ctrlDesc.text,
+                                          ctrlPrice.text
+                                        );
+                                        await TemplatesAuth.updateTemplateNonPict(widget.tid, templates).then((value) {
+                                          if (value == true) {
+                                            setState(() => load = false);
+                                            ft.showToast(
+                                              child: Activity.showToast(
+                                                'Published',
+                                                Colors.blue
+                                              ),
+                                              toastDuration: const Duration(seconds: 1),
+                                              fadeDuration: 200
+                                            );
+                                            clearForm();
+                                          }
+                                        });
+                                      }
                                     }
                                     Navigator.pushNamedAndRemoveUntil(context, '/main', (Route<dynamic> route) => false);
                                   }

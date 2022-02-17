@@ -11,6 +11,7 @@ class _DetailsState extends State<Details> {
   @override
   Widget build(BuildContext context) {
     final Templates templates = widget.templates;
+    final Brightness brightness = ThemeModelInheritedNotifier.of(context).theme.brightness;
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
@@ -26,80 +27,163 @@ class _DetailsState extends State<Details> {
           toolbarHeight: 75,
           elevation: 0
         ),
+        extendBodyBehindAppBar: true,
         body: ListView(
+          physics: const BouncingScrollPhysics(),
           children: [
-            SizedBox(height: 15.0),
-            Padding(
-              padding: EdgeInsets.only(left: 20.0),
-              child: Text(
-                templates.name,
-                style: TextStyle(
-                  fontSize: 42.0,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFFF17532)
-                )
+            Text(
+              templates.name,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontFamily: 'Oswald',
+                fontSize: 50,
+                color: Colors.blue
               )
             ),
-            SizedBox(height: 15.0),
-                Hero(
-                  tag: templates.photo,
-                  child: FadeInImage(
-                        height: 100,
-                        width: 100,
-                        placeholder: const AssetImage('assets/images/no_net_bg.png'),
-                        image: NetworkImage(templates.photo)
+            const SizedBox(height: 15),
+            Hero(
+              tag: templates.photo,
+              child: FadeInImage(
+                placeholder: const AssetImage('assets/images/no_net_bg.png'),
+                image: NetworkImage(templates.photo)
+              )
+            ),
+            const SizedBox(height: 20.0),
+            Text(
+              Activity.toIDR(templates.price),
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontFamily: 'Dancing Script',
+                fontSize: 25,
+                color: Colors.blue
+              )
+            ),
+            const SizedBox(height: 20.0),
+            Text(
+              templates.desc,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontFamily: 'Flamenco',
+                fontSize: 25,
+                color: Colors.blue
+              )
+            ),
+            const SizedBox(height: 100),
+            Column(
+              children: [
+                SizedBox(
+                  height: 60,
+                  width: 300,
+                  child: ElevatedButton.icon(
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Edit(
+                          tid: templates.tid,
+                          photo: templates.photo,
+                          name: templates.name,
+                          desc: templates.desc,
+                          price: templates.price
+                        )
                       )
-                ),
-                SizedBox(height: 20.0),
-                Center(
-                  child: Text(Activity.toIDR(templates.price),
-                      style: TextStyle(
-                          fontSize: 22.0,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFFF17532))),
-                ),
-                SizedBox(height: 10.0),
-                Center(
-                  child: Text(templates.name,
-                      style: TextStyle(
-                          color: Color(0xFF575E67),
-                          fontSize: 24.0)),
-                ),
-                SizedBox(height: 20.0),
-                Center(
-                  child: Container(
-                    width: MediaQuery.of(context).size.width - 50.0,
-                    child: Text(templates.desc,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                          fontSize: 16.0,
-                          color: Color(0xFFB4B8B9))
                     ),
-                  ),
-                ),
-                SizedBox(height: 20.0),
-                Center(
-                  child: Container(
-                    width: MediaQuery.of(context).size.width - 50.0,
-                    height: 50.0,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25.0),
-                      color: Color(0xFFF17532)
-                    ),
-                    child: Center(
-                      child: Text('Add to cart',
-                        style: TextStyle(
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white
-                    ),
+                    style: ButtonStyle(
+                      overlayColor: MaterialStateProperty.resolveWith((states) {
+                        return states.contains(MaterialState.pressed)
+                        ? Colors.blue
+                        : null;
+                      }),
+                      foregroundColor: MaterialStateProperty.resolveWith((states) {
+                        return states.contains(MaterialState.pressed)
+                        ? const Color(0xFF00FF00)
+                        : null;
+                      }),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))
                       )
+                    ),
+                    icon: const Icon(Icons.edit),
+                    label: Row(
+                      children: const [
+                        Spacer(),
+                        Text('Edit Template', style: TextStyle(fontFamily: 'Prompt', fontSize: 25)),
+                        Spacer(flex: 1)
+                      ]
+                    )
+                  )
+                ),
+                const SizedBox(height: 12),
+                SizedBox(
+                  height: 60,
+                  width: 300,
+                  child: ElevatedButton.icon(
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          backgroundColor: brightness == Brightness.dark ? Colors.black : Colors.white,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                          title: Text(
+                            'Confirmation',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: brightness == Brightness.dark ? Colors.white : Colors.black)
+                          ),
+                          content: Text(
+                            'Are you sure you want to delete this item?',
+                            style: TextStyle(color: brightness == Brightness.dark ? Colors.white : Colors.black)
+                          ),
+                          actions: [
+                            TextButton(
+                              child: Text(
+                                'Cancel',
+                                style: TextStyle(color: brightness == Brightness.dark ? Colors.white : Colors.black)
+                              ),
+                              onPressed: () => Navigator.of(context).pop()
+                            ),
+                            TextButton(
+                              child: Text(
+                                'Delete',
+                                style: TextStyle(color: brightness == Brightness.dark ? Colors.white : Colors.black)
+                              ),
+                              onPressed: () {
+                                TemplatesAuth.deleteTemplate(templates.tid);
+                                Navigator.pushNamedAndRemoveUntil(context, '/main', (Route<dynamic> route) => false);
+                              }
+                            )
+                          ]
+                        )
+                      );
+                    },
+                    style: ButtonStyle(
+                      overlayColor: MaterialStateProperty.resolveWith((states) {
+                        return states.contains(MaterialState.pressed)
+                        ? Colors.blue
+                        : null;
+                      }),
+                      foregroundColor: MaterialStateProperty.resolveWith((states) {
+                        return states.contains(MaterialState.pressed)
+                        ? const Color(0xFFFF0000)
+                        : null;
+                      }),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))
+                      )
+                    ),
+                    icon: const Icon(Icons.clear),
+                    label: Row(
+                      children: const [
+                        Spacer(),
+                        Text('Delete Template',style: TextStyle(fontFamily: 'Prompt', fontSize: 25)),
+                        Spacer(flex: 1)
+                      ]
                     )
                   )
                 )
+              ]
+            )
           ]
-        ),
-      ),
+        )
+      )
     );
   }
 }

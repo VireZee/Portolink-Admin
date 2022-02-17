@@ -6,15 +6,6 @@ class HomeView extends StatefulWidget {
   @override
   _HomeViewState createState() => _HomeViewState();
 }
-Future<bool> sub() async {
-  final bool sub = await InternetConnectionChecker().hasConnection;
-  if (sub) {
-    return true;
-  }
-  else {
-    return false;
-  }
-}
 class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
@@ -27,9 +18,7 @@ class _HomeViewState extends State<HomeView> {
           onTap: () => Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => Details(
-                templates: templates,
-              )
+              builder: (context) => Details(templates: templates)
             )
           ),
           child: Container(
@@ -57,6 +46,7 @@ class _HomeViewState extends State<HomeView> {
                     color: brightness == Brightness.dark ? Colors.white : Colors.black
                   )
                 ),
+                const SizedBox(height: 20),
                 Text(
                   templates.name,
                   textAlign: TextAlign.center,

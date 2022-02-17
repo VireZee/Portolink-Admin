@@ -19,7 +19,7 @@ class TemplatesAuth {
     await Firebase.initializeApp();
     final String dateNow = Activity.dateNow();
     tDocument = await tCollection.add({
-      'TID': '-',
+      'TID': templates.tid,
       'Photo': templates.photo,
       'Name': convertToTitleCase(templates.name),
       'Description': templates.desc,
@@ -36,14 +36,13 @@ class TemplatesAuth {
     });
     return true;
   }
-  static Future<bool> updateTemplate(Templates templates, XFile imgFile) async {
+  static Future<bool> updateTemplate(String tid, Templates templates, XFile imgFile) async {
     await Firebase.initializeApp();
     final String dateNow = Activity.dateNow();
-    await FirebaseStorage.instance.ref().child('Template Photos').child(tDocument!.id + '.jpg').delete();
-    ref = FirebaseStorage.instance.ref().child('Template Photos').child(tDocument!.id + '.jpg');
+    ref = FirebaseStorage.instance.ref().child('Template Photos').child(tid + '.jpg');
     uploadTask = ref!.putFile(File(imgFile.path));
     await uploadTask!.whenComplete(() => ref!.getDownloadURL().then((value) => imgUrl = value));
-    await tCollection.doc(tDocument!.id).update({
+    await tCollection.doc(tid).update({
       'Photo': imgUrl,
       'Name': convertToTitleCase(templates.name),
       'Description': templates.desc,
@@ -52,10 +51,21 @@ class TemplatesAuth {
     });
     return true;
   }
-  static Future<bool> deleteTemplate() async {
+  static Future<bool> updateTemplateNonPict(String tid, Templates templates) async {
     await Firebase.initializeApp();
-    await tCollection.doc(tDocument!.id).delete();
-    await FirebaseStorage.instance.ref().child('Template Photos').child(tDocument!.id + '.jpg').delete();
+    final String dateNow = Activity.dateNow();
+    await tCollection.doc(tid).update({
+      'Name': convertToTitleCase(templates.name),
+      'Description': templates.desc,
+      'Price': templates.price,
+      'Updated': dateNow
+    });
+    return true;
+  }
+  static Future<bool> deleteTemplate(String tid) async {
+    await Firebase.initializeApp();
+    await tCollection.doc(tid).delete();
+    await FirebaseStorage.instance.ref().child('Template Photos').child(tid + '.jpg').delete();
     return true;
   }
 }
