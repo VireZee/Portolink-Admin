@@ -145,8 +145,8 @@ class _DetailsState extends State<Details> {
                                 'Delete',
                                 style: TextStyle(color: brightness == Brightness.dark ? Colors.white : Colors.black)
                               ),
-                              onPressed: () async {
-                                await TemplatesAuth.deleteTemplate(templates.tid);
+                              onPressed: () {
+                                TemplatesAuth.deleteTemplate(templates.tid);
                                 Navigator.pushNamedAndRemoveUntil(context, '/main', (Route<dynamic> route) => false);
                               }
                             )
