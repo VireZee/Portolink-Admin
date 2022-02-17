@@ -252,28 +252,55 @@ class _EditState extends State<Edit> {
                                     );
                                   }
                                   else if (sub) {
-                                    if (_formKey.currentState!.validate()) {
-                                      final Templates templates = Templates(
-                                        '',
-                                        '',
-                                        ctrlName.text,
-                                        ctrlDesc.text,
-                                        ctrlPrice.text
-                                      );
-                                      await TemplatesAuth.updateTemplate(templates, imgFile).then((value) {
-                                        if (value == true) {
-                                          setState(() => load = false);
-                                          ft.showToast(
-                                            child: Activity.showToast(
-                                              'Published',
-                                              Colors.blue
-                                            ),
-                                            toastDuration: const Duration(seconds: 1),
-                                            fadeDuration: 200
-                                          );
-                                          clearForm();
-                                        }
-                                      });
+                                    if (imgFile != null) {
+                                      if (_formKey.currentState!.validate()) {
+                                        final Templates templates = Templates(
+                                          '',
+                                          '',
+                                          ctrlName.text,
+                                          ctrlDesc.text,
+                                          ctrlPrice.text
+                                        );
+                                        await TemplatesAuth.updateTemplate(templates, imgFile!).then((value) {
+                                          if (value == true) {
+                                            setState(() => load = false);
+                                            ft.showToast(
+                                              child: Activity.showToast(
+                                                'Published',
+                                                Colors.blue
+                                              ),
+                                              toastDuration: const Duration(seconds: 1),
+                                              fadeDuration: 200
+                                            );
+                                            clearForm();
+                                          }
+                                        });
+                                      }
+                                    }
+                                    else if (imgFile == null) {
+                                      if (_formKey.currentState!.validate()) {
+                                        final Templates templates = Templates(
+                                          '',
+                                          '',
+                                          ctrlName.text,
+                                          ctrlDesc.text,
+                                          ctrlPrice.text
+                                        );
+                                        await TemplatesAuth.updateTemplateNonPict(templates).then((value) {
+                                          if (value == true) {
+                                            setState(() => load = false);
+                                            ft.showToast(
+                                              child: Activity.showToast(
+                                                'Published',
+                                                Colors.blue
+                                              ),
+                                              toastDuration: const Duration(seconds: 1),
+                                              fadeDuration: 200
+                                            );
+                                            clearForm();
+                                          }
+                                        });
+                                      }
                                     }
                                   }
                                   else {
