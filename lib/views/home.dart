@@ -1,7 +1,7 @@
 part of 'views.dart';
 
 class Home extends StatefulWidget {
-  const Home({ Key? key }) : super(key: key);
+  const Home({Key? key}) : super(key: key);
   @override
   _HomeState createState() => _HomeState();
 }
@@ -9,8 +9,9 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     final Brightness brightness = ThemeModelInheritedNotifier.of(context).theme.brightness;
+    final Size size = MediaQuery.of(context).size;
     return StreamBuilder<QuerySnapshot>(
-      stream: TemplatesAuth.tCollection.snapshots(),
+      stream: TemplatesAuth.tCollection.orderBy('Name').snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (Auth.auth.currentUser == null) {
           return Scaffold(
@@ -46,21 +47,27 @@ class _HomeState extends State<Home> {
               toolbarHeight: 75,
               backgroundColor: Colors.transparent,
               elevation: 0,
-              title: TextField(
-                textCapitalization: TextCapitalization.words,
-                keyboardType: TextInputType.name,
-                style: const TextStyle(
-                  fontFamily: 'Roboto',
-                  fontSize: 15
-                ),
-                decoration: InputDecoration(
-                  hintText: 'Search',
-                  prefixIcon: const Icon(Icons.search),
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))
-                ),
-                maxLines: 1,
-                textInputAction: TextInputAction.done
-              )
+              title: SizedBox(
+                width: size.width - size.width * 0.15,
+                child: TextField(
+                  textCapitalization: TextCapitalization.words,
+                  keyboardType: TextInputType.name,
+                  style: const TextStyle(
+                    fontFamily: 'Roboto',
+                    fontSize: 15
+                  ),
+                  decoration: InputDecoration(
+                    hintText: 'Search',
+                    prefixIcon: const Icon(Icons.search),
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))
+                  ),
+                  maxLines: 1,
+                  textInputAction: TextInputAction.done
+                )
+              ),
+              actions: [
+                const Icon(Icons.sort)
+              ]
             ),
             body: GridView.count(
               physics: const BouncingScrollPhysics(),
