@@ -1,7 +1,7 @@
 part of 'views.dart';
 
 class Edit extends StatefulWidget {
-  const Edit({Key? key, required this.photo, required this.name, required this.desc, required this.price, required this.tid}) : super(key: key);
+  const Edit({Key? key, required this.tid, required this.photo, required this.name, required this.desc, required this.price}) : super(key: key);
   final String tid;
   final String photo;
   final String name;

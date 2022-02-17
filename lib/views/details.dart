@@ -27,6 +27,7 @@ class _DetailsState extends State<Details> {
           toolbarHeight: 75,
           elevation: 0
         ),
+        extendBodyBehindAppBar: true,
         body: ListView(
           physics: const BouncingScrollPhysics(),
           children: [
@@ -43,8 +44,6 @@ class _DetailsState extends State<Details> {
             Hero(
               tag: templates.photo,
               child: FadeInImage(
-                height: 100,
-                width: 100,
                 placeholder: const AssetImage('assets/images/no_net_bg.png'),
                 image: NetworkImage(templates.photo)
               )
