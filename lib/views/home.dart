@@ -38,7 +38,18 @@ class _HomeState extends State<Home> {
             appBar: AppBar(
               toolbarHeight: 75,
               backgroundColor: Colors.transparent,
-              elevation: 0
+              elevation: 0,
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    showSearch(
+                      context: context,
+                      delegate: Search()
+                    );
+                  },
+                  icon: const Icon(Icons.search)
+                )
+              ]
             ),
             body: GridView.count(
               physics: const BouncingScrollPhysics(),
@@ -60,5 +71,41 @@ class _HomeState extends State<Home> {
         );
       }
     );
+  }
+}
+class Search extends SearchDelegate {
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+   IconButton(
+      onPressed: () {
+        if (query.isEmpty) {
+          close(context, null);
+        }
+        else {
+          query = '';
+        }
+      },
+      icon: const Icon(Icons.cancel)
+    );
+   return null;
+  }
+  @override
+  Widget? buildLeading(BuildContext context) {
+    IconButton(
+      onPressed: () => close(context, null),
+      icon: const Icon(Icons.arrow_back)
+    );
+   return null;
+  }
+  @override
+  Widget buildResults(BuildContext context) {
+    // TODO: implement buildResults
+    throw UnimplementedError();
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    // TODO: implement buildSuggestions
+    throw UnimplementedError();
   }
 }
