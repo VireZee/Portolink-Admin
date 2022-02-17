@@ -102,12 +102,12 @@ class _DetailsState extends State<Details> {
                         RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))
                       )
                     ),
-                    icon: const Icon(Icons.clear),
+                    icon: const Icon(Icons.edit),
                     label: Row(
                       children: const [
                         Spacer(),
                         Text('Edit Template', style: TextStyle(fontFamily: 'Prompt', fontSize: 25)),
-                        Spacer()
+                        Spacer(flex: 1)
                       ]
                     )
                   )
@@ -174,7 +174,7 @@ class _DetailsState extends State<Details> {
                       children: const [
                         Spacer(),
                         Text('Delete Template',style: TextStyle(fontFamily: 'Prompt', fontSize: 25)),
-                        Spacer()
+                        Spacer(flex: 1)
                       ]
                     )
                   )
