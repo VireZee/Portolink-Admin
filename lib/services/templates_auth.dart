@@ -39,11 +39,10 @@ class TemplatesAuth {
   static Future<bool> updateTemplate(Templates templates, XFile imgFile) async {
     await Firebase.initializeApp();
     final String dateNow = Activity.dateNow();
-    await FirebaseStorage.instance.ref().child('Template Photos').child(tDocument!.id + '.jpg').delete();
-    ref = FirebaseStorage.instance.ref().child('Template Photos').child(tDocument!.id + '.jpg');
+    ref = FirebaseStorage.instance.ref().child('Template Photos').child(templates.tid + '.jpg');
     uploadTask = ref!.putFile(File(imgFile.path));
     await uploadTask!.whenComplete(() => ref!.getDownloadURL().then((value) => imgUrl = value));
-    await tCollection.doc(tDocument!.id).update({
+    await tCollection.doc(templates.tid).update({
       'Photo': imgUrl,
       'Name': convertToTitleCase(templates.name),
       'Description': templates.desc,
@@ -55,7 +54,7 @@ class TemplatesAuth {
   static Future<bool> updateTemplateNonPict(Templates templates) async {
     await Firebase.initializeApp();
     final String dateNow = Activity.dateNow();
-    await tCollection.doc(tDocument!.id).update({
+    await tCollection.doc(templates.tid).update({
       'Name': convertToTitleCase(templates.name),
       'Description': templates.desc,
       'Price': templates.price,
