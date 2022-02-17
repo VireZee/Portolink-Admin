@@ -36,13 +36,13 @@ class TemplatesAuth {
     });
     return true;
   }
-  static Future<bool> updateTemplate(String id, Templates templates, XFile imgFile) async {
+  static Future<bool> updateTemplate(String tid, Templates templates, XFile imgFile) async {
     await Firebase.initializeApp();
     final String dateNow = Activity.dateNow();
-    ref = FirebaseStorage.instance.ref().child('Template Photos').child(id + '.jpg');
+    ref = FirebaseStorage.instance.ref().child('Template Photos').child(tid + '.jpg');
     uploadTask = ref!.putFile(File(imgFile.path));
     await uploadTask!.whenComplete(() => ref!.getDownloadURL().then((value) => imgUrl = value));
-    await tCollection.doc(id).update({
+    await tCollection.doc(tid).update({
       'Photo': imgUrl,
       'Name': convertToTitleCase(templates.name),
       'Description': templates.desc,
@@ -62,7 +62,7 @@ class TemplatesAuth {
     });
     return true;
   }
-  static Future<bool> deleteTemplate(tid) async {
+  static Future<bool> deleteTemplate(String tid) async {
     await Firebase.initializeApp();
     await tCollection.doc(tid).delete();
     await FirebaseStorage.instance.ref().child('Template Photos').child(tid + '.jpg').delete();
