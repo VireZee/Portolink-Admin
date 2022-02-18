@@ -39,7 +39,7 @@ class _HomeViewState extends State<HomeView> {
                 ),
                 const SizedBox(height: 30),
                 Text(
-                  Activity.toIDR(templates.price),
+                  Activity.toIDR(templates.price.toString()),
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 12,

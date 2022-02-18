@@ -260,7 +260,7 @@ class _EditState extends State<Edit> {
                                           '',
                                           ctrlName.text,
                                           ctrlDesc.text,
-                                          ctrlPrice.text
+                                          int.parse(ctrlPrice.text)
                                         );
                                         await TemplatesAuth.updateTemplate(widget.tid, templates, imgFile!).then((value) {
                                           if (value == true) {
@@ -285,7 +285,7 @@ class _EditState extends State<Edit> {
                                           '',
                                           ctrlName.text,
                                           ctrlDesc.text,
-                                          ctrlPrice.text
+                                          int.parse(ctrlPrice.text)
                                         );
                                         await TemplatesAuth.updateTemplateNonPict(widget.tid, templates).then((value) {
                                           if (value == true) {

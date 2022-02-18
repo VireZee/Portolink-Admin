@@ -263,7 +263,7 @@ class _AddState extends State<Add> {
                                         '',
                                         ctrlName.text,
                                         ctrlDesc.text,
-                                        ctrlPrice.text
+                                        int.parse(ctrlPrice.text)
                                       );
                                       await TemplatesAuth.addTemplate(templates, imgFile!).then((value) {
                                         if (value == true) {

@@ -50,7 +50,7 @@ class _DetailsState extends State<Details> {
             ),
             const SizedBox(height: 20.0),
             Text(
-              Activity.toIDR(templates.price),
+              Activity.toIDR(templates.price.toString()),
               textAlign: TextAlign.center,
               style: const TextStyle(
                 fontFamily: 'Dancing Script',
@@ -83,7 +83,7 @@ class _DetailsState extends State<Details> {
                           photo: templates.photo,
                           name: templates.name,
                           desc: templates.desc,
-                          price: templates.price
+                          price: templates.price.toString()
                         )
                       )
                     ),
