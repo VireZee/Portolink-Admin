@@ -76,7 +76,7 @@ class _HomeState extends State<Home> {
                     fontSize: 15
                   ),
                   decoration: InputDecoration(
-                    hintText: 'Search',
+                    hintText: 'W bingung ini gimana 😭😭😭',
                     prefixIcon: const Icon(Icons.search),
                     border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))
                   ),
