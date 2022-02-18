@@ -6,12 +6,31 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 class _HomeState extends State<Home> {
+  String trigger = '';
+  Stream<QuerySnapshot> sort() {
+    Stream<QuerySnapshot> s = TemplatesAuth.tCollection.orderBy('Name').snapshots();
+    setState(() {
+      if (trigger == 'nd') {
+        s = TemplatesAuth.tCollection.orderBy('Name').snapshots();
+      }
+      else if (trigger == 'nu') {
+        s = TemplatesAuth.tCollection.orderBy('Name', descending: true).snapshots();
+      }
+      else if (trigger == 'pd') {
+        s = TemplatesAuth.tCollection.orderBy('Price').snapshots();
+      }
+      else if (trigger == 'pu') {
+        s = TemplatesAuth.tCollection.orderBy('Price', descending: true).snapshots();
+      }
+    });
+    return s;
+  }
   @override
   Widget build(BuildContext context) {
     final Brightness brightness = ThemeModelInheritedNotifier.of(context).theme.brightness;
     final Size size = MediaQuery.of(context).size;
     return StreamBuilder<QuerySnapshot>(
-      stream: TemplatesAuth.tCollection.orderBy('Name').snapshots(),
+      stream: sort(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (Auth.auth.currentUser == null) {
           return Scaffold(
@@ -72,41 +91,45 @@ class _HomeState extends State<Home> {
                   tooltip: 'Sort',
                   itemBuilder: (context) => [
                     PopupMenuItem(
-                      child: Row(
-                        children: [
-                          Text('Name', style: TextStyle(color: brightness == Brightness.dark ? Colors.white : Colors.black)),
-                          const Spacer(flex: 2),
-                          Icon(Icons.arrow_upward, color: brightness == Brightness.dark ? Colors.white : Colors.black),
-                          const Spacer()
-                        ]
-                      )
-                    ),
-                    PopupMenuItem(
+                      onTap: () => setState(() => trigger = 'nd'),
                       child: Row(
                         children: [
                           Text('Name', style: TextStyle(color: brightness == Brightness.dark ? Colors.white : Colors.black)),
                           const Spacer(flex: 2),
                           Icon(Icons.arrow_downward, color: brightness == Brightness.dark ? Colors.white : Colors.black),
+                          const Spacer()
+                        ]
+                      )
+                    ),
+                    PopupMenuItem(
+                      onTap: () => setState(() => trigger = 'nu'),
+                      child: Row(
+                        children: [
+                          Text('Name', style: TextStyle(color: brightness == Brightness.dark ? Colors.white : Colors.black)),
+                          const Spacer(flex: 2),
+                          Icon(Icons.arrow_upward, color: brightness == Brightness.dark ? Colors.white : Colors.black),
                           const Spacer() 
                         ]
                       )
                     ),
                     PopupMenuItem(
-                      child: Row(
-                        children: [
-                          Text('Price', style: TextStyle(color: brightness == Brightness.dark ? Colors.white : Colors.black)),
-                          const Spacer(flex: 2),
-                          Icon(Icons.arrow_upward, color: brightness == Brightness.dark ? Colors.white : Colors.black),
-                          const Spacer()
-                        ]
-                      )
-                    ),
-                    PopupMenuItem(
+                      onTap: () => setState(() => trigger = 'pd'),
                       child: Row(
                         children: [
                           Text('Price', style: TextStyle(color: brightness == Brightness.dark ? Colors.white : Colors.black)),
                           const Spacer(flex: 2),
                           Icon(Icons.arrow_downward, color: brightness == Brightness.dark ? Colors.white : Colors.black),
+                          const Spacer()
+                        ]
+                      )
+                    ),
+                    PopupMenuItem(
+                      onTap: () => setState(() => trigger = 'pu'),
+                      child: Row(
+                        children: [
+                          Text('Price', style: TextStyle(color: brightness == Brightness.dark ? Colors.white : Colors.black)),
+                          const Spacer(flex: 2),
+                          Icon(Icons.arrow_upward, color: brightness == Brightness.dark ? Colors.white : Colors.black),
                           const Spacer()
                         ]
                       )
