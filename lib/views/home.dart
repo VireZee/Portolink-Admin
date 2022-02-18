@@ -6,12 +6,22 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 class _HomeState extends State<Home> {
+  bool s = true;
+  Stream<QuerySnapshot> sort() {
+    if (s == true) {
+      setState(() => TemplatesAuth.tCollection.orderBy('Name').snapshots());
+    }
+    else if (s == false) {
+      setState(() => TemplatesAuth.tCollection.orderBy('Price').snapshots());
+    }
+    return sort();
+  }
   @override
   Widget build(BuildContext context) {
     final Brightness brightness = ThemeModelInheritedNotifier.of(context).theme.brightness;
     final Size size = MediaQuery.of(context).size;
     return StreamBuilder<QuerySnapshot>(
-      stream: TemplatesAuth.tCollection.orderBy('Name').snapshots(),
+      stream: sort(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (Auth.auth.currentUser == null) {
           return Scaffold(
@@ -66,7 +76,17 @@ class _HomeState extends State<Home> {
                 )
               ),
               actions: [
-                const Icon(Icons.sort)
+                PopupMenuButton(
+                  itemBuilder: (context) => [
+                    const PopupMenuItem(
+                      child: Text('Name')
+                    ),
+                    const PopupMenuItem(
+                      child: Text('Price')
+                    ),
+                  ],
+                  icon: const Icon(Icons.sort)
+                )
               ]
             ),
             body: GridView.count(
