@@ -9,7 +9,6 @@ class ProfileView extends StatefulWidget {
 class _ProfileViewState extends State<ProfileView> {
   final FToast ft = FToast();
   bool load = false;
-  bool c = true;
   @override
   void initState() {
     super.initState();
@@ -18,6 +17,7 @@ class _ProfileViewState extends State<ProfileView> {
   @override
   Widget build(BuildContext context) {
     final Admins admins = widget.admins;
+    final Brightness brightness = ThemeModelInheritedNotifier.of(context).theme.brightness;
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
@@ -38,15 +38,14 @@ class _ProfileViewState extends State<ProfileView> {
                 ThemeSwitcher(
                   builder: (context) => IconButton(
                     onPressed: () {
-                      setState(() => c = !c);
                       ThemeSwitcher.of(context).changeTheme(
                         theme: ThemeModelInheritedNotifier.of(context).theme.brightness == Brightness.dark
                         ? BlackWhite.lightTheme()
                         : BlackWhite.darkTheme()
                       );
                     },
-                    icon: c ? const Icon(CupertinoIcons.sun_max_fill) : const Icon(CupertinoIcons.moon_stars_fill),
-                    color: c ? Colors.white : Colors.black
+                    icon: brightness == Brightness.dark ? const Icon(CupertinoIcons.sun_max_fill) : const Icon(CupertinoIcons.moon_stars_fill),
+                    color: brightness == Brightness.dark ? Colors.white : Colors.black
                   )
                 ),
                 const Spacer()
