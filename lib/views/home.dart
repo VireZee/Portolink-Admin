@@ -47,9 +47,15 @@ class _HomeState extends State<Home> {
           );
         }
         else if (snapshot.connectionState == ConnectionState.waiting) {
-          return Scaffold(
-            body: Center(
-              child: Activity.loading()
+          return Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/home_bg.jpg'),
+                fit: BoxFit.fill
+              )
+            ),
+            child: Scaffold(
+              body: Activity.loading()
             )
           );
         }
