@@ -47,15 +47,10 @@ class _HomeState extends State<Home> {
           );
         }
         else if (snapshot.connectionState == ConnectionState.waiting) {
-          return Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/images/home_bg.jpg'),
-                fit: BoxFit.fill
-              )
-            ),
-            child: Scaffold(
-              body: Activity.loading()
+          return Scaffold(
+            backgroundColor: Colors.transparent,
+            body: Center(
+              child: Activity.loading()
             )
           );
         }
@@ -144,21 +139,24 @@ class _HomeState extends State<Home> {
                 )
               ]
             ),
-            body: GridView.count(
-              physics: const BouncingScrollPhysics(),
-              crossAxisCount: 3,
-              primary: false,
-              childAspectRatio: 0.6,
-              children: snapshot.data!.docs.map((DocumentSnapshot doc) {
-                final Templates templates = Templates(
-                  doc['TID'],
-                  doc['Photo'],
-                  doc['Name'],
-                  doc['Description'],
-                  doc['Price']
-                );
-                return HomeView(templates: templates);
-              }).toList()
+            body: SizedBox(
+              height: size.height - size.height * 0.2,
+              child: GridView.count(
+                physics: const BouncingScrollPhysics(),
+                crossAxisCount: 3,
+                primary: false,
+                childAspectRatio: 0.6,
+                children: snapshot.data!.docs.map((DocumentSnapshot doc) {
+                  final Templates templates = Templates(
+                    doc['TID'],
+                    doc['Photo'],
+                    doc['Name'],
+                    doc['Description'],
+                    doc['Price']
+                  );
+                  return HomeView(templates: templates);
+                }).toList()
+              ),
             )
           )
         );
