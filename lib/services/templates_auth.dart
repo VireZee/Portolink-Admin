@@ -27,7 +27,7 @@ class TemplatesAuth {
       'Created': dateNow,
       'Updated': '-'
     });
-    ref = FirebaseStorage.instance.ref().child('Template Photos').child(tDocument!.id + '.jpg');
+    ref = FirebaseStorage.instance.ref().child('Template Photos').child(tDocument!.id);
     uploadTask = ref!.putFile(File(imgFile.path));
     await uploadTask!.whenComplete(() => ref!.getDownloadURL().then((value) => imgUrl = value));
     await tCollection.doc(tDocument!.id).update({
@@ -39,7 +39,7 @@ class TemplatesAuth {
   static Future<bool> updateTemplate(String tid, Templates templates, XFile imgFile) async {
     await Firebase.initializeApp();
     final String dateNow = Activity.dateNow();
-    ref = FirebaseStorage.instance.ref().child('Template Photos').child(tid + '.jpg');
+    ref = FirebaseStorage.instance.ref().child('Template Photos').child(tid);
     uploadTask = ref!.putFile(File(imgFile.path));
     await uploadTask!.whenComplete(() => ref!.getDownloadURL().then((value) => imgUrl = value));
     await tCollection.doc(tid).update({
@@ -65,7 +65,7 @@ class TemplatesAuth {
   static Future<bool> deleteTemplate(String tid) async {
     await Firebase.initializeApp();
     await tCollection.doc(tid).delete();
-    await FirebaseStorage.instance.ref().child('Template Photos').child(tid + '.jpg').delete();
+    await FirebaseStorage.instance.ref().child('Template Photos').child(tid).delete();
     return true;
   }
 }
