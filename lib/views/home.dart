@@ -49,9 +49,7 @@ class _HomeState extends State<Home> {
         else if (snapshot.connectionState == ConnectionState.waiting) {
           return Scaffold(
             backgroundColor: Colors.transparent,
-            body: Center(
-              child: Activity.loading()
-            )
+            body: Activity.loading()
           );
         }
         return Container(
