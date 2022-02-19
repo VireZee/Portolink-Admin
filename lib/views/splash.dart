@@ -41,7 +41,7 @@ class _SplashState extends State<Splash> {
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [Lottie.asset('assets/images/loading.json')]
+        children: <LottieBuilder>[Lottie.asset('assets/images/loading.json')]
       )
     );
   }
