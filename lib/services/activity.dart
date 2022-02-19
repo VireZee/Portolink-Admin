@@ -16,7 +16,7 @@ class Activity {
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
-        children: [
+        children: <Widget>[
           myColor == Colors.blue
           ? const Icon(Icons.check, color: Colors.white)
           : const Icon(Icons.clear, color: Colors.white),
