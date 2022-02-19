@@ -26,7 +26,7 @@ class _ProfileViewState extends State<ProfileView> {
         )
       ),
       child: Stack(
-        children: [
+        children: <Widget>[
           Scaffold(
             backgroundColor: Colors.transparent,
             appBar: AppBar(
@@ -51,9 +51,9 @@ class _ProfileViewState extends State<ProfileView> {
             ),
             body: ListView(
               physics: const BouncingScrollPhysics(),
-              children: [
+              children: <Column>[
                 Column(
-                  children: [
+                  children: <Widget>[
                     ProfilePicture(
                       name: admins.name,
                       radius: 75,
