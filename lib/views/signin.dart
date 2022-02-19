@@ -9,9 +9,8 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController ctrlEmail = TextEditingController();
-  final TextEditingController ctrlPass = TextEditingController();
+  final ObscuringTextEditingController ctrlPass = ObscuringTextEditingController();
   final FToast ft = FToast();
-  bool vis = true;
   bool load = false;
   bool btn = true;
   bool isEmpty() {
@@ -125,26 +124,17 @@ class _SignInState extends State<SignIn> {
                         child: TextField(
                           onChanged: (value) => isEmpty(),
                           style: const TextStyle(fontSize: 25),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             border: InputBorder.none,
-                            prefixIcon: const Padding(
+                            prefixIcon: Padding(
                               padding: EdgeInsets.symmetric(horizontal: 25),
                               child: Icon(
                                 FontAwesomeIcons.lock,
                                 size: 28
                               )
                             ),
-                            hintText: 'Password',
-                            suffixIcon: GestureDetector(
-                              onTap: () => setState(() => vis = !vis),
-                              child: Icon(
-                                vis
-                                ? Icons.visibility
-                                : Icons.visibility_off
-                              )
-                            )
+                            hintText: 'Password'
                           ),
-                          obscureText: vis,
                           controller: ctrlPass,
                           keyboardType: TextInputType.text,
                           textInputAction: TextInputAction.done
@@ -326,6 +316,28 @@ class _SignInState extends State<SignIn> {
         load == true
         ? Activity.check()
         : Container()
+      ]
+    );
+  }
+}
+class ObscuringTextEditingController extends TextEditingController {
+  @override
+  TextSpan buildTextSpan({required BuildContext context, TextStyle? style, required bool withComposing}) {
+    final String displayValue = '•' * value.text.length;
+    if (!value.composing.isValid || !withComposing) {
+      return TextSpan(style: style, text: displayValue);
+    }
+    final TextStyle composingStyle = style?.merge(const TextStyle(decoration: TextDecoration.none))
+    ?? const TextStyle(decoration: TextDecoration.none);
+    return TextSpan(
+      style: style,
+      children: <TextSpan>[
+        TextSpan(text: value.composing.textBefore(displayValue)),
+        TextSpan(
+          style: composingStyle,
+          text: value.composing.textInside(displayValue),
+        ),
+        TextSpan(text: value.composing.textAfter(displayValue)),
       ]
     );
   }
