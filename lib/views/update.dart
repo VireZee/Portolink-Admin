@@ -32,7 +32,7 @@ class _UpdateState extends State<Update> {
     final Brightness brightness = ThemeModelInheritedNotifier.of(context).theme.brightness;
     return ThemeSwitchingArea(
       child: Stack(
-        children: [
+        children: <Container>[
           Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
@@ -62,16 +62,16 @@ class _UpdateState extends State<Update> {
               ),
               backgroundColor: Colors.transparent,
               body: Stack(
-                children: [
+                children: <ListView>[
                   ListView(
                     padding: const EdgeInsets.symmetric(horizontal: 32),
                     physics: const BouncingScrollPhysics(),
-                    children: [
+                    children: <Form>[
                       Form(
                         key: _formKey,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
+                          children: <Widget>[
                             const Text(
                               'Name',
                               style: TextStyle(
