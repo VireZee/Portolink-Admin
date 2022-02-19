@@ -32,7 +32,7 @@ class _UpdateState extends State<Update> {
     final Brightness brightness = ThemeModelInheritedNotifier.of(context).theme.brightness;
     return ThemeSwitchingArea(
       child: Stack(
-        children: [
+        children: <Container>[
           Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
@@ -49,13 +49,11 @@ class _UpdateState extends State<Update> {
                 actions: [
                   ThemeSwitcher(
                     builder: (context) => IconButton(
-                      onPressed: () {
-                        ThemeSwitcher.of(context).changeTheme(
-                          theme: ThemeModelInheritedNotifier.of(context).theme.brightness == Brightness.dark
-                          ? BlackWhite.lightTheme()
-                          : BlackWhite.darkTheme()
-                        );
-                      },
+                      onPressed: () => ThemeSwitcher.of(context).changeTheme(
+                        theme: ThemeModelInheritedNotifier.of(context).theme.brightness == Brightness.dark
+                        ? BlackWhite.lightTheme()
+                        : BlackWhite.darkTheme()
+                      ),
                       icon: brightness == Brightness.dark ? const Icon(CupertinoIcons.sun_max_fill) : const Icon(CupertinoIcons.moon_stars_fill),
                       color: brightness == Brightness.dark ? Colors.white : Colors.black
                     )
@@ -64,16 +62,16 @@ class _UpdateState extends State<Update> {
               ),
               backgroundColor: Colors.transparent,
               body: Stack(
-                children: [
+                children: <ListView>[
                   ListView(
                     padding: const EdgeInsets.symmetric(horizontal: 32),
                     physics: const BouncingScrollPhysics(),
-                    children: [
+                    children: <Form>[
                       Form(
                         key: _formKey,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
+                          children: <Widget>[
                             const Text(
                               'Name',
                               style: TextStyle(

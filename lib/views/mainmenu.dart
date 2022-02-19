@@ -23,7 +23,7 @@ class _MainMenuState extends State<MainMenu> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Stack(
-        children: [
+        children: <Widget>[
           Center(child: _widgetOptions.elementAt(_selectedIntex)),
           Positioned(
             bottom: 0,
@@ -32,7 +32,7 @@ class _MainMenuState extends State<MainMenu> {
               width: size.width,
               height: 80,
               child: Stack(
-                children: [
+                children: <Widget>[
                   CustomPaint(  
                     size: Size(size.width, 80),
                     painter: Custom()
@@ -43,9 +43,7 @@ class _MainMenuState extends State<MainMenu> {
                       backgroundColor: Colors.blue,
                       child: const Icon(Icons.add, size: 40),
                       elevation: 0,
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/add');
-                      }
+                      onPressed: () =>  Navigator.pushNamed(context, '/add')
                     )
                   ),
                   SizedBox(
@@ -53,7 +51,7 @@ class _MainMenuState extends State<MainMenu> {
                     height: 80,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
+                      children: <Widget>[
                         IconButton(
                           icon: Icon(
                             Icons.home,
