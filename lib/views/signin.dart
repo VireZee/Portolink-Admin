@@ -38,7 +38,7 @@ class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      children: [
+      children: <Widget>[
         Form(
           key: _formKey,
           child: Container(
@@ -52,7 +52,7 @@ class _SignInState extends State<SignIn> {
             child: Scaffold(
               backgroundColor: Colors.transparent,
               body: Column(
-                children: [
+                children: <Widget>[
                   Flexible(
                     child: Center(
                       child: Column(
