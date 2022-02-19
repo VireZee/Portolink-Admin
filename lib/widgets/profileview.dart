@@ -37,13 +37,11 @@ class _ProfileViewState extends State<ProfileView> {
                 const Spacer(flex: 25),
                 ThemeSwitcher(
                   builder: (context) => IconButton(
-                    onPressed: () {
-                      ThemeSwitcher.of(context).changeTheme(
-                        theme: ThemeModelInheritedNotifier.of(context).theme.brightness == Brightness.dark
-                        ? BlackWhite.lightTheme()
-                        : BlackWhite.darkTheme()
-                      );
-                    },
+                    onPressed: () => ThemeSwitcher.of(context).changeTheme(
+                      theme: ThemeModelInheritedNotifier.of(context).theme.brightness == Brightness.dark
+                      ? BlackWhite.lightTheme()
+                      : BlackWhite.darkTheme()
+                    ),
                     icon: brightness == Brightness.dark ? const Icon(CupertinoIcons.sun_max_fill) : const Icon(CupertinoIcons.moon_stars_fill),
                     color: brightness == Brightness.dark ? Colors.white : Colors.black
                   )

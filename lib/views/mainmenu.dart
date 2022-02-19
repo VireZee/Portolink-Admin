@@ -43,9 +43,7 @@ class _MainMenuState extends State<MainMenu> {
                       backgroundColor: Colors.blue,
                       child: const Icon(Icons.add, size: 40),
                       elevation: 0,
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/add');
-                      }
+                      onPressed: () =>  Navigator.pushNamed(context, '/add')
                     )
                   ),
                   SizedBox(
