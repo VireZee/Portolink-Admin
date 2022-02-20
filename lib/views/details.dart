@@ -30,7 +30,7 @@ class _DetailsState extends State<Details> {
         extendBodyBehindAppBar: true,
         body: ListView(
           physics: const BouncingScrollPhysics(),
-          children: [
+          children: <Widget>[
             Text(
               templates.name,
               textAlign: TextAlign.center,
