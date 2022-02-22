@@ -70,7 +70,7 @@ class _DetailsState extends State<Details> {
             ),
             const SizedBox(height: 100),
             Column(
-              children: [
+              children: <SizedBox>[
                 SizedBox(
                   height: 60,
                   width: 300,
