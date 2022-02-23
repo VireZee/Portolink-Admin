@@ -26,7 +26,7 @@ class _HomeViewState extends State<HomeView> {
               borderRadius: BorderRadius.circular(10)
             ),
             child: Column(
-              children: [
+              children: <Widget>[
                 const SizedBox(height: 15),
                 Hero(
                   tag: templates.photo,
