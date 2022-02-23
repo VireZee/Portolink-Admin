@@ -92,7 +92,7 @@ class _HomeState extends State<Home> {
                     PopupMenuItem(
                       onTap: () => setState(() => trigger = 'nd'),
                       child: Row(
-                        children: [
+                        children: <Widget>[
                           Text('Name', style: TextStyle(color: brightness == Brightness.dark ? Colors.white : Colors.black)),
                           const Spacer(flex: 2),
                           Icon(Icons.arrow_downward, color: brightness == Brightness.dark ? Colors.white : Colors.black),
@@ -103,7 +103,7 @@ class _HomeState extends State<Home> {
                     PopupMenuItem(
                       onTap: () => setState(() => trigger = 'nu'),
                       child: Row(
-                        children: [
+                        children: <Widget>[
                           Text('Name', style: TextStyle(color: brightness == Brightness.dark ? Colors.white : Colors.black)),
                           const Spacer(flex: 2),
                           Icon(Icons.arrow_upward, color: brightness == Brightness.dark ? Colors.white : Colors.black),
@@ -114,7 +114,7 @@ class _HomeState extends State<Home> {
                     PopupMenuItem(
                       onTap: () => setState(() => trigger = 'pd'),
                       child: Row(
-                        children: [
+                        children: <Widget>[
                           Text('Price', style: TextStyle(color: brightness == Brightness.dark ? Colors.white : Colors.black)),
                           const Spacer(flex: 2),
                           Icon(Icons.arrow_downward, color: brightness == Brightness.dark ? Colors.white : Colors.black),
@@ -125,7 +125,7 @@ class _HomeState extends State<Home> {
                     PopupMenuItem(
                       onTap: () => setState(() => trigger = 'pu'),
                       child: Row(
-                        children: [
+                        children: <Widget>[
                           Text('Price', style: TextStyle(color: brightness == Brightness.dark ? Colors.white : Colors.black)),
                           const Spacer(flex: 2),
                           Icon(Icons.arrow_upward, color: brightness == Brightness.dark ? Colors.white : Colors.black),
