@@ -56,7 +56,7 @@ class _AddState extends State<Add> {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      children: [
+      children: <Container>[
         Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
@@ -75,16 +75,16 @@ class _AddState extends State<Add> {
             ),
             backgroundColor: Colors.transparent,
             body: Stack(
-              children: [
+              children: <ListView>[
                 ListView(
                   padding: const EdgeInsets.symmetric(horizontal: 32),
                   physics: const BouncingScrollPhysics(),
-                  children: [
+                  children: <Form>[
                     Form(
                       key: _formKey,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                        children: <Widget>[
                           const Text(
                             'Name',
                             style: TextStyle(fontSize: 15)
@@ -138,7 +138,7 @@ class _AddState extends State<Add> {
                           const SizedBox(height: 16),
                           imgFile == null
                           ? Row(
-                            children: [
+                            children: <Widget>[
                               ElevatedButton.icon(
                                 onPressed: () => chooseFile(),
                                 icon: const Icon(Icons.image),
@@ -164,7 +164,7 @@ class _AddState extends State<Add> {
                             ]
                           )
                           : Row(
-                            children: [
+                            children: <Widget>[
                               ElevatedButton.icon(
                                 onPressed: () => chooseFile(),
                                 icon: const Icon(Icons.image),
