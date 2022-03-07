@@ -154,7 +154,7 @@ class _HomeState extends State<Home> {
                   );
                   return HomeView(templates: templates);
                 }).toList()
-              ),
+              )
             )
           )
         );
