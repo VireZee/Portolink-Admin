@@ -21,6 +21,11 @@ class _SplashState extends State<Splash> {
     });
     ft.init(context);
   }
+  @override
+  void dispose() {
+    super.dispose();
+    vid.dispose();
+  }
   _loadSplash() async {
     const Duration _duration = Duration(seconds: 7);
     return Timer(_duration, checkAuth);
@@ -45,8 +50,17 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // body: Center(
+      //   child: vid.value.isInitialized
+      //   ? AspectRatio(
+      //     aspectRatio: vid.value.aspectRatio,
+      //     child: VideoPlayer(vid)
+      //   )
+      //   : Container()
+      // )
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        children: <VideoPlayer>[VideoPlayer(vid)]
         // children: <LottieBuilder>[Lottie.asset('assets/images/loading.json')]
       )
     );
