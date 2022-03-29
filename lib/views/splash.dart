@@ -8,23 +8,12 @@ class Splash extends StatefulWidget {
 }
 class _SplashState extends State<Splash> {
   final FirebaseAuth auth = Auth.auth;
-  final VideoPlayerController vid = VideoPlayerController.asset('assets/images/portolink.mp4');
   final FToast ft = FToast();
   @override
   void initState() {
     super.initState();
     _loadSplash();
-    vid.initialize().then((value) {
-      vid.setVolume(1);
-      vid.setLooping(true);
-      vid.play();
-    });
     ft.init(context);
-  }
-  @override
-  void dispose() {
-    super.dispose();
-    vid.dispose();
   }
   _loadSplash() async {
     const Duration _duration = Duration(seconds: 7);
@@ -50,18 +39,9 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // body: Center(
-      //   child: vid.value.isInitialized
-      //   ? AspectRatio(
-      //     aspectRatio: vid.value.aspectRatio,
-      //     child: VideoPlayer(vid)
-      //   )
-      //   : Container()
-      // )
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: <VideoPlayer>[VideoPlayer(vid)]
-        // children: <LottieBuilder>[Lottie.asset('assets/images/loading.json')]
+        children: <LottieBuilder>[Lottie.asset('assets/images/portolink.json')]
       )
     );
   }
