@@ -65,24 +65,6 @@ class _HomeState extends State<Home> {
               toolbarHeight: 75,
               backgroundColor: Colors.transparent,
               elevation: 0,
-              title: SizedBox(
-                width: size.width - size.width * 0.15,
-                child: TextField(
-                  textCapitalization: TextCapitalization.words,
-                  keyboardType: TextInputType.name,
-                  style: const TextStyle(
-                    fontFamily: 'Roboto',
-                    fontSize: 15
-                  ),
-                  decoration: InputDecoration(
-                    hintText: 'W bingung ini gimana 😭😭😭',
-                    prefixIcon: const Icon(Icons.search),
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))
-                  ),
-                  maxLines: 1,
-                  textInputAction: TextInputAction.done
-                )
-              ),
               actions: [
                 PopupMenuButton(
                   color: brightness == Brightness.dark ? Colors.black : Colors.white,
