@@ -15,7 +15,6 @@ import 'package:portolink_admin/models/models.dart';
 import 'package:portolink_admin/services/services.dart';
 import 'package:portolink_admin/shared/shared.dart';
 import 'package:portolink_admin/widgets/widgets.dart';
-import 'package:video_player/video_player.dart';
 
 part 'add.dart';
 part 'chat.dart';
