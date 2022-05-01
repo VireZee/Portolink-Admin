@@ -39,9 +39,10 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: <LottieBuilder>[Lottie.asset('assets/images/portolink.json')]
+        children: <Image>[Image.asset('assets/images/portolink.png', fit: BoxFit.fill)]
       )
     );
   }
