@@ -16,7 +16,7 @@ class _SplashState extends State<Splash> {
     ft.init(context);
   }
   _loadSplash() async {
-    const Duration _duration = Duration(seconds: 5);
+    const Duration _duration = Duration(seconds: 7);
     return Timer(_duration, checkAuth);
   }
   void checkAuth() async {
@@ -39,9 +39,10 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: <LottieBuilder>[Lottie.asset('assets/images/loading.json')]
+        children: <Image>[Image.asset('assets/images/portolink.png', fit: BoxFit.fill)]
       )
     );
   }
