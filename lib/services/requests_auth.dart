@@ -7,36 +7,28 @@ class RequestsAuth {
   static Future<bool> approved() async {
     await Firebase.initializeApp();
     await rCollection.doc(rDocument!.id).update({
-      'Pending Status': {
-        'Status': 'Approved, Waiting for payment'
-      }
+      'Status': 'Approved, Waiting for payment'
     });
     return true;
   }
   static Future<bool> verified() async {
     await Firebase.initializeApp();
     await rCollection.doc(rDocument!.id).update({
-      'Pending Status': {
-        'Status': 'In Progress'
-      }
+      'Status': 'In Progress'
     });
     return true;
   }
   static Future<bool> rejected() async {
     await Firebase.initializeApp();
     await rCollection.doc(rDocument!.id).update({
-      'Pending Status': {
-        'Status': 'Rejected'
-      }
+      'Status': 'Rejected'
     });
     return true;
   }
   static Future<bool> finished() async {
     await Firebase.initializeApp();
     await rCollection.doc(rDocument!.id).update({
-      'Pending Status': {
-        'Status': 'Finished'
-      }
+      'Status': 'Finished'
     });
     return true;
   }
