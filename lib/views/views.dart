@@ -17,6 +17,7 @@ import 'package:portolink_admin/widgets/widgets.dart';
 
 part 'add.dart';
 part 'details.dart';
+part 'done.dart';
 part 'edit.dart';
 part 'home.dart';
 part 'mainmenu.dart';
@@ -25,5 +26,4 @@ part 'profile.dart';
 part 'signin.dart';
 part 'signup.dart';
 part 'splash.dart';
-part 'transaction.dart';
 part 'update.dart';

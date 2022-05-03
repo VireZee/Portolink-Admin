@@ -11,7 +11,7 @@ class _MainMenuState extends State<MainMenu> {
   final List<Widget> _widgetOptions = <Widget>[
     const Home(),
     const Order(),
-    const Transaction(),
+    const Done(),
     const Profile()
   ];
   void _onItemTapped(int index) {

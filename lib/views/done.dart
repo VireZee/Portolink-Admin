@@ -1,11 +1,11 @@
 part of 'views.dart';
 
-class Transaction extends StatefulWidget {
-  const Transaction({Key? key}) : super(key: key);
+class Done extends StatefulWidget {
+  const Done({Key? key}) : super(key: key);
   @override
-  _TransactionState createState() => _TransactionState();
+  _DoneState createState() => _DoneState();
 }
-class _TransactionState extends State<Transaction> {
+class _DoneState extends State<Done> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
