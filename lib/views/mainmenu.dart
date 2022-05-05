@@ -11,7 +11,7 @@ class _MainMenuState extends State<MainMenu> {
   final List<Widget> _widgetOptions = <Widget>[
     const Home(),
     const Order(),
-    const Transaction(),
+    const Done(),
     const Profile()
   ];
   void _onItemTapped(int index) {
@@ -69,7 +69,7 @@ class _MainMenuState extends State<MainMenu> {
                         Container(width: size.width * 0.20),
                         IconButton(
                           icon: Icon(
-                            Icons.attach_money,
+                            Icons.check,
                             color: _selectedIntex == 2 ? Colors.blue : null
                           ),
                           onPressed: () => _onItemTapped(2)
